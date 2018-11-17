@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/font-awesome.min.css">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="Thanh" />
+<meta name="description" content="I've been told jq is the new cool JSON parser. As I used to use the 'json' command that came from npm, I had to adapt my scripts slightly. jq -r . Re-arrange the output: jq -r '.[] | {name: .name, dob: .dob} | join (" ")' jq -r '[.options[] | select(.name=="blah")'" />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="Cloud Magic"/>
+<meta property="og:title" content="Some useful filters for parsing JSON with jq"/>
+<meta property="og:description" content="I've been told jq is the new cool JSON parser. As I used to use the 'json' command that came from npm, I had to adapt my scripts slightly. jq -r . Re-arrange the output: jq -r '.[] | {name: .name, dob: .dob} | join (" ")' jq -r '[.options[] | select(.name=="blah")'"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://thanhpham.cloud/drafts/some-useful-filters-for-parsing-json-with-jq.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-05-06 14:45:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://thanhpham.cloud/author/thanh.html">
+<meta property="article:section" content="Uncategorized"/>
+<meta property="og:image" content="https://thanhpham.cloud/upload/profile.jpg">  <title>Cloud Magic &ndash; Some useful filters for parsing JSON with jq</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://thanhpham.cloud">
+        <img src="https://thanhpham.cloud/upload/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
+      </a>
+      <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+          <li><a href="https://thanhpham.cloud/gallery/" target="_blank">Gallery</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/burukuru" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-flickr" href="http://flickr.com/burukuru" target="_blank"><i class="fa fa-flickr"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="https://thanhpham.cloud">Home</a>
+      <a href="https://thanhpham.cloud/categories.html">Categories</a>
+      <a href="https://thanhpham.cloud/tags.html">Tags</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="some-useful-filters-for-parsing-json-with-jq">Some useful filters for parsing JSON with jq</h1>
+    <p>Posted on Wed 06 May 2015 in <a href="https://thanhpham.cloud/category/uncategorized.html">Uncategorized</a></p>
+  </header>
+  <div>
+    <p>I've been told <a href="http://stedolan.github.io/jq/">jq</a> is the new cool JSON
+parser. As I used to use the 'json' command that came from npm, I had to
+adapt my scripts slightly.</p>
+<p>jq -r .</p>
+<p>Re-arrange the output:</p>
+<p>jq -r '.[] | {name: .name, dob: .dob} | join (" ")'</p>
+<p>jq -r '[.options[] | select(.name=="blah")'</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+</article>
+
+    <footer>
+      <p>&copy; Thanh </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Some useful filters for parsing JSON with jq",
+  "headline": "Some useful filters for parsing JSON with jq",
+  "datePublished": "2015-05-06 14:45:00+01:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Thanh",
+    "url": "https://thanhpham.cloud/author/thanh.html"
+  },
+  "image": "https://thanhpham.cloud/upload/profile.jpg",
+  "url": "https://thanhpham.cloud/drafts/some-useful-filters-for-parsing-json-with-jq.html",
+  "description": "I've been told jq is the new cool JSON parser. As I used to use the 'json' command that came from npm, I had to adapt my scripts slightly. jq -r . Re-arrange the output: jq -r '.[] | {name: .name, dob: .dob} | join (" ")' jq -r '[.options[] | select(.name=="blah")'"
+}
+</script></body>
+</html>

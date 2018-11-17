@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/font-awesome.min.css">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="Thanh" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="Cloud Magic"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Cloud Magic"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://thanhpham.cloud"/>
+<meta property="og:image" content="https://thanhpham.cloud/upload/profile.jpg">
+  <title>Cloud Magic &ndash; Tag: tomcat</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://thanhpham.cloud">
+        <img src="https://thanhpham.cloud/upload/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
+      </a>
+      <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+          <li><a href="https://thanhpham.cloud/gallery/" target="_blank">Gallery</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/burukuru" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-flickr" href="http://flickr.com/burukuru" target="_blank"><i class="fa fa-flickr"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="https://thanhpham.cloud">Home</a>
+      <a href="https://thanhpham.cloud/categories.html">Categories</a>
+      <a href="https://thanhpham.cloud/tags.html">Tags</a>
+    </nav>
+
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/finding-out-your-solr-version.html#finding-out-your-solr-version">Finding out your Solr version</a></h2>
+    <p>
+      Posted on Thu 01 October 2015 in <a href="https://thanhpham.cloud/category/sysadmin.html">SysAdmin</a>
+      &#8226; Tagged with
+      <a href="https://thanhpham.cloud/tag/solr.html">solr</a>,      <a href="https://thanhpham.cloud/tag/tomcat.html">tomcat</a>    </p>
+  </header>
+  <div>
+      <p>I can never remember how to do this without the GUI so here is the quick
+command to detect the Solr version you're currently running:</p>
+<div class="highlight"><pre><span></span>wget -q -O- localhost:8080/solr/admin/registry.jsp | grep -E &quot;spec-version|impl-version&quot;
+</pre></div>
+
+
+<p>A helpful StackOverflow
+link:<a href="https://stackoverflow.com/questions/2395089/how-do-i-find-out-version-of-currently-running-solr">https://stackoverflow.com/questions/2395089/how-do-i-find-out-version-of-currently-running-solr</a></p>
+      <a class="btn" href="https://thanhpham.cloud/finding-out-your-solr-version.html#finding-out-your-solr-version">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/solr-issues-with-drupal.html#solr-issues-with-drupal">Solr issues with Drupal</a></h2>
+    <p>
+      Posted on Tue 24 February 2015 in <a href="https://thanhpham.cloud/category/sysadmin.html">SysAdmin</a>
+      &#8226; Tagged with
+      <a href="https://thanhpham.cloud/tag/drupal.html">drupal</a>,      <a href="https://thanhpham.cloud/tag/search.html">search</a>,      <a href="https://thanhpham.cloud/tag/smartos.html">smartos</a>,      <a href="https://thanhpham.cloud/tag/solr.html">solr</a>,      <a href="https://thanhpham.cloud/tag/tomcat.html">tomcat</a>,      <a href="https://thanhpham.cloud/tag/truss.html">truss</a>    </p>
+  </header>
+  <div>
+      <h1>Broken search</h1>
+<p>One of our clients have been having issue with the search function on
+their Drupal site. This full text search was powered by <strong>Solr</strong> behind
+the scenes. The issue only only ever occurred when the user was logged
+in so it was never flagged up to us.</p>
+<p>Recently …</p>
+      <a class="btn" href="https://thanhpham.cloud/solr-issues-with-drupal.html#solr-issues-with-drupal">Continue reading</a>
+  </div>
+</article>
+
+  <div class="pagination">
+  </div>
+
+    <footer>
+      <p>&copy; Thanh </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Cloud Magic ",
+  "url" : "https://thanhpham.cloud",
+  "image": "https://thanhpham.cloud/upload/profile.jpg",
+  "description": ""
+}
+</script></body>
+</html>

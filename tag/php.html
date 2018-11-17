@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/font-awesome.min.css">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="Thanh" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="Cloud Magic"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Cloud Magic"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://thanhpham.cloud"/>
+<meta property="og:image" content="https://thanhpham.cloud/upload/profile.jpg">
+  <title>Cloud Magic &ndash; Tag: php</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://thanhpham.cloud">
+        <img src="https://thanhpham.cloud/upload/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
+      </a>
+      <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+          <li><a href="https://thanhpham.cloud/gallery/" target="_blank">Gallery</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/burukuru" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-flickr" href="http://flickr.com/burukuru" target="_blank"><i class="fa fa-flickr"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="https://thanhpham.cloud">Home</a>
+      <a href="https://thanhpham.cloud/categories.html">Categories</a>
+      <a href="https://thanhpham.cloud/tags.html">Tags</a>
+    </nav>
+
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/dumping-php-headers.html#dumping-php-headers">Dumping PHP headers</a></h2>
+    <p>
+      Posted on Mon 07 March 2016 in <a href="https://thanhpham.cloud/category/sysadmin.html">SysAdmin</a>
+      &#8226; Tagged with
+      <a href="https://thanhpham.cloud/tag/php.html">php</a>,      <a href="https://thanhpham.cloud/tag/testing.html">testing</a>,      <a href="https://thanhpham.cloud/tag/debug.html">debug</a>    </p>
+  </header>
+  <div>
+      <p>I read this somewhere and want to keep it around.</p>
+<p>Sometimes I need to debug HTTPS/header issues in a load balanced environment.</p>
+<p>Here's how to dump all the headers in PHP:</p>
+<div class="highlight"><pre><span></span><span class="cm">/* {DocumentRoot}/headers.php</span>
+<span class="cm">Show all values defined on $_SERVER */</span><span class="w"></span>
+<span class="o">&amp;</span>lt<span class="err">;?</span>php<span class="w"></span>
+<span class="w">     </span><span class="kr">while</span><span class="w"> </span><span class="o">(</span>list<span class="o">(</span><span class="err">$</span>var<span class="o">,</span><span class="err">$</span>value<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>each<span class="w"> </span><span class="o">(</span><span class="err">$</span>_SERVER<span class="o">))</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span>echo …</pre></div>
+      <a class="btn" href="https://thanhpham.cloud/dumping-php-headers.html#dumping-php-headers">Continue reading</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/php-errors-not-displaying-in-iis.html#php-errors-not-displaying-in-iis">PHP errors not displaying in IIS</a></h2>
+    <p>
+      Posted on Fri 18 May 2012 in <a href="https://thanhpham.cloud/category/sysadmin.html">SysAdmin</a>
+      &#8226; Tagged with
+      <a href="https://thanhpham.cloud/tag/errors.html">errors</a>,      <a href="https://thanhpham.cloud/tag/iis.html">iis</a>,      <a href="https://thanhpham.cloud/tag/php.html">php</a>    </p>
+  </header>
+  <div>
+      <p>A customer called in today saying that their site is not working after
+re-pointing the DNS. No changes have been made in a week and it was
+working fine before. Typical.</p>
+<p>So I turned on Firebug and notice it's a 500 error. Logged into the
+server and saw it's a …</p>
+      <a class="btn" href="https://thanhpham.cloud/php-errors-not-displaying-in-iis.html#php-errors-not-displaying-in-iis">Continue reading</a>
+  </div>
+</article>
+
+  <div class="pagination">
+  </div>
+
+    <footer>
+      <p>&copy; Thanh </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Cloud Magic ",
+  "url" : "https://thanhpham.cloud",
+  "image": "https://thanhpham.cloud/upload/profile.jpg",
+  "description": ""
+}
+</script></body>
+</html>

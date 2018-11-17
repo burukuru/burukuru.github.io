@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/font-awesome.min.css">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+<meta name="author" content="Thanh" />
+<meta name="description" content="Having recently acquired a new PC, after 4 arduous heavy-overclocked years with my previous one, I had to install Gentoo again. I've been a Gentoo user for a few years now but I've only installed it a couple of times. Here are a handful of hiccups I ran into and …" />
+<meta name="keywords" content="gentoo kde">
+<meta property="og:site_name" content="Cloud Magic"/>
+<meta property="og:title" content="Installing Gentoo"/>
+<meta property="og:description" content="Having recently acquired a new PC, after 4 arduous heavy-overclocked years with my previous one, I had to install Gentoo again. I've been a Gentoo user for a few years now but I've only installed it a couple of times. Here are a handful of hiccups I ran into and …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://thanhpham.cloud/drafts/107.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-05-30 14:41:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://thanhpham.cloud/author/thanh.html">
+<meta property="article:section" content="Uncategorized"/>
+<meta property="article:tag" content="gentoo kde"/>
+<meta property="og:image" content="https://thanhpham.cloud/upload/profile.jpg">  <title>Cloud Magic &ndash; Installing Gentoo</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://thanhpham.cloud">
+        <img src="https://thanhpham.cloud/upload/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
+      </a>
+      <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+          <li><a href="https://thanhpham.cloud/gallery/" target="_blank">Gallery</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/burukuru" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-flickr" href="http://flickr.com/burukuru" target="_blank"><i class="fa fa-flickr"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="https://thanhpham.cloud">Home</a>
+      <a href="https://thanhpham.cloud/categories.html">Categories</a>
+      <a href="https://thanhpham.cloud/tags.html">Tags</a>
+    </nav>
+
+<article>
+  <header>
+    <h1 id="107">Installing Gentoo</h1>
+    <p>Posted on Sat 30 May 2015 in <a href="https://thanhpham.cloud/category/uncategorized.html">Uncategorized</a></p>
+  </header>
+  <div>
+    <p>Having recently acquired a new PC, after 4 arduous heavy-overclocked
+years with my previous one, I had to install Gentoo again.<br>
+I've been a Gentoo user for a few years now but I've only installed it
+a couple of times. Here are a handful of hiccups I ran into and I
+thought I'd jot them down for next time.</p>
+<h3>UEFI</h3>
+<p>I've only ever installed OSs on BIOS systems with MBR partitions before.
+As the new build had a UEFI-capable motherboard and a lot of other cool
+kit (an SSD among them), I decided in true Gentoo spirit to make things
+faster by skipping the bootloader.</p>
+<h4>UEFI Support</h4>
+<p>The first issue I ran into is that Gentoo doesn't officially support
+installing a UEFI-bootable system; you need to jump over a few hoops.<br>
+The Gentoo wiki comes to the rescue as usual with a nice and concise
+article on this:</p>
+<p>http://wiki.gentoo.org/wiki/UEFI_Gentoo_Quick_Install_Guide</p>
+<h4>Stub kernel and initramfs</h4>
+<p>One thing to note when using the stub kernel is that everything needs to
+be compiled into the kernel as we are not loading the initramfs
+anymore.<br>
+This means that any device drivers will need to be compiled in. Because
+of some dependencies, the AHCI SATA driver wasn't loaded into mine and I
+kept getting a stack trace on kernel boot and the following error
+message:</p>
+<div class="highlight"><pre><span></span>---[ end Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
+</pre></div>
+
+
+<p>I tried compiling the SATA driver in but it only allowed me to select it
+as a module. After some tedious troubleshooting, it turned out that one
+of the modules selected in the "Serial ATA and Parallel ATA drivers
+(libata)" was blocking AHCI SATA from being compiled in. I just
+de-selected everything, ticked "AHCI SATA support" and then ticked
+whatever else I needed again.</p>
+<h4>KDE and X server</h4>
+<p>/etc/conf.d/xdm</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://thanhpham.cloud/tag/gentoo-kde.html">gentoo kde</a>
+    </p>
+  </div>
+</article>
+
+    <footer>
+      <p>&copy; Thanh </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "name": "Installing Gentoo",
+  "headline": "Installing Gentoo",
+  "datePublished": "2015-05-30 14:41:00+01:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Thanh",
+    "url": "https://thanhpham.cloud/author/thanh.html"
+  },
+  "image": "https://thanhpham.cloud/upload/profile.jpg",
+  "url": "https://thanhpham.cloud/drafts/107.html",
+  "description": "Having recently acquired a new PC, after 4 arduous heavy-overclocked years with my previous one, I had to install Gentoo again. I've been a Gentoo user for a few years now but I've only installed it a couple of times. Here are a handful of hiccups I ran into and …"
+}
+</script></body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/font-awesome.min.css">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="Thanh" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="Cloud Magic"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Cloud Magic"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://thanhpham.cloud"/>
+<meta property="og:image" content="https://thanhpham.cloud/upload/profile.jpg">
+  <title>Cloud Magic</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://thanhpham.cloud">
+        <img src="https://thanhpham.cloud/upload/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
+      </a>
+      <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+          <li><a href="https://thanhpham.cloud/gallery/" target="_blank">Gallery</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/burukuru" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-flickr" href="http://flickr.com/burukuru" target="_blank"><i class="fa fa-flickr"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="https://thanhpham.cloud">Home</a>
+      <a href="https://thanhpham.cloud/categories.html">Categories</a>
+      <a href="https://thanhpham.cloud/tags.html">Tags</a>
+    </nav>
+
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/desire-for-cynanogen.html#desire-for-cynanogen">Desire for Cyanogen</a></h2>
+    <p>
+      Posted on Thu 22 March 2012 in <a href="https://thanhpham.cloud/category/htc.html">HTC</a>
+      &#8226; Tagged with
+      <a href="https://thanhpham.cloud/tag/cyanogen.html">cyanogen</a>,      <a href="https://thanhpham.cloud/tag/desire.html">desire</a>,      <a href="https://thanhpham.cloud/tag/htc.html">htc</a>    </p>
+  </header>
+  <div>
+      <p>It's been over a year and a half since I set up this site/blog so I
+thought it was about time to write something. For the past week and a
+half I've been on night shift at work which has a habit of over running
+and eating a lot of my spare time. This made me choose a couple of
+things I wanted to get working in the little time I had left during the
+day so without further ado, I'll jump into what I've been getting up to
+in the past couple of days.</p>
+<p>I've owned the HTC Desire (GSM) for about a year and a half. It was one
+of the better phones at the time but there's a couple of things that are
+quite annoying about it; most notably the very limited internal storage.
+After Google+ and Swype there is very little room for much else. I
+decided to get Cyanogen hoping it was clear some of the HTC bloatware,
+give me some extra space and give a breath of fresh air to the phone.
+Also, it would be nice to move up from Froyo to Gingerbread</p>
+<h4>Getting S-OFF, root and CWM</h4>
+<p><a href="http://revolutionary.io/">Revolutionary</a> will set the secureflag to off
+on the phone. Just download and run as root. I'm on Linux so ran into
+some issues when installing ClockworkMod:</p>
+<div class="highlight"><pre><span></span> <span class="n">Do</span> <span class="n">you</span> <span class="nb">want</span> <span class="nb">to</span> <span class="n">download</span> (<span class="n">Internet</span> <span class="n">connection</span> <span class="k">required</span>) <span class="o">and</span> <span class="n">flash</span> <span class="n">ClockworkMod</span> <span class="n">Recovery</span>? [<span class="n">Y</span><span class="o">/</span><span class="n">n</span>]
+ <span class="n">Downloading</span> <span class="n">recovery</span> <span class="k">for</span> <span class="n">your</span> <span class="n">phone</span> (<span class="n">bravo</span>)...<span class="n">revolutionary:</span> ../<span class="n">sysdeps</span><span class="o">/</span><span class="n">unix</span><span class="o">/</span><span class="n">sysv</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">getpagesize</span>.<span class="n">c:32:</span> <span class="n">__getpagesize:</span> <span class="n">Assertion</span> `<span class="n">_rtld_global_ro</span>.<span class="n">_dl_pagesize</span> != <span class="mi">0</span>&#39; <span class="n">failed</span>.
+</pre></div>
+
+
+<p>After some digging it was just easier to download CWM Recovery and
+install it manually. I followed the instructions posted by attn1 from
+the <a href="http://forum.xda-developers.com/showthread.php?p=14693680">xda-developers
+forum</a>:</p>
+<ol>
+<li>Download the adb tool and appropriate CWM img file</li>
+<li>Extract and put them all in the same directory</li>
+<li>Put the phone into fastboot USB mode</li>
+<li>Run</li>
+</ol>
+<!-- -->
+
+<div class="highlight"><pre><span></span>sudo ./fastboot flash recovery recovery_name.img
+</pre></div>
+
+
+<p>CWM is now installed! Now follow the instructions on the forum to obtain
+root!</p>
+<p>If you'd like to read some more about CWM, here's <a href="http://www.addictivetips.com/mobile/what-is-clockworkmod-recovery-and-how-to-use-it-on-android-complete-guide/">a nice
+write-up</a>.</p>
+<h4>Radio and Cyanogen</h4>
+<p>To get this rolling, we need the <a href="http://wiki.cyanogenmod.com/wiki/HTC_Desire_%28GSM%29:_FAQ#Fastboot_process">latest radio
+flashed</a>
+using the fastboot process.</p>
+<p>Then all that remains is <a href="http://wiki.cyanogenmod.com/wiki/HTC_Desire_%28GSM%29:_Full_Update_Guide#ClockworkMod_Recovery_process">flashing Cyanogen and Google
+Apps</a>!</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/hello-world.html#hello-world">Cake</a></h2>
+    <p>
+      Posted on Mon 02 August 2010 in <a href="https://thanhpham.cloud/category/boring-announcements.html">Boring Announcements</a>
+    </p>
+  </header>
+  <div>
+      <p>Unfortunately there is no cake.</p>
+<p>This is my personal space and I might be posting random stuff here.
+There's a partly public wiki where I keep my notes and stuff. Nothing
+interesting but feel free to lurk.</p>
+  </div>
+</article>
+
+  <div class="pagination">
+      <a class="btn float-right" href="https://thanhpham.cloud/index2.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+      <p>&copy; Thanh </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Cloud Magic ",
+  "url" : "https://thanhpham.cloud",
+  "image": "https://thanhpham.cloud/upload/profile.jpg",
+  "description": ""
+}
+</script></body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/pygments.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/font-awesome.min.css">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+  <meta name="author" content="Thanh" />
+  <meta name="description" content="" />
+<meta property="og:site_name" content="Cloud Magic"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Cloud Magic"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://thanhpham.cloud"/>
+<meta property="og:image" content="https://thanhpham.cloud/upload/profile.jpg">
+  <title>Cloud Magic</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://thanhpham.cloud">
+        <img src="https://thanhpham.cloud/upload/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
+      </a>
+      <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
+      <p></p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+          <li><a href="https://thanhpham.cloud/gallery/" target="_blank">Gallery</a></li>
+        </ul>
+      </nav>
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/burukuru" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-flickr" href="http://flickr.com/burukuru" target="_blank"><i class="fa fa-flickr"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="https://thanhpham.cloud">Home</a>
+      <a href="https://thanhpham.cloud/categories.html">Categories</a>
+      <a href="https://thanhpham.cloud/tags.html">Tags</a>
+    </nav>
+
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/solr-issues-with-drupal.html#solr-issues-with-drupal">Solr issues with Drupal</a></h2>
+    <p>
+      Posted on Tue 24 February 2015 in <a href="https://thanhpham.cloud/category/sysadmin.html">SysAdmin</a>
+      &#8226; Tagged with
+      <a href="https://thanhpham.cloud/tag/drupal.html">drupal</a>,      <a href="https://thanhpham.cloud/tag/search.html">search</a>,      <a href="https://thanhpham.cloud/tag/smartos.html">smartos</a>,      <a href="https://thanhpham.cloud/tag/solr.html">solr</a>,      <a href="https://thanhpham.cloud/tag/tomcat.html">tomcat</a>,      <a href="https://thanhpham.cloud/tag/truss.html">truss</a>    </p>
+  </header>
+  <div>
+      <h1>Broken search</h1>
+<p>One of our clients have been having issue with the search function on
+their Drupal site. This full text search was powered by <strong>Solr</strong> behind
+the scenes. The issue only only ever occurred when the user was logged
+in so it was never flagged up to us.</p>
+<p>Recently we've tried to migrate them to a new server and lots of new
+changes had to be made; the issue started appearing for all users, even
+those that aren't logged in so I decided to take a look.</p>
+<h1>Symptoms and debugging</h1>
+<p>The issue only manifested itself with a simple error message:</p>
+<div class="highlight"><pre><span></span>The Apache Solr search engine is not available. Please contact your site administrator.
+</pre></div>
+
+
+<p>This wasn't really helpful and the Tomcat log files didn't show any
+issues. The <a href="https://skybert.wordpress.com/2009/07/22/how-to-get-solr-to-log-to-a-log-file/">Solr
+logs</a>
+didn't show the query so I assumed it didn't even hit the Solr app;
+manual queries were working fine via the Solr web interface and appeared
+in the logs. The next step was to extract the Solr query that Drupal was
+running.</p>
+<h2>The easy way - Drupal</h2>
+<p>If you're running Drupal or any codebase where developers are on hand to
+debug the app with you, you can dig into the code and make the app log
+or print out the query to the browser.</p>
+<p>I came across this very helpful link on how to <a href="https://www.drupal.org/node/2240049">debug Solr queries in
+Drupal</a>. In my case, possibly a
+different version of Drupal, the file was different:</p>
+<div class="highlight"><pre><span></span><span class="err">#</span> <span class="nt">grep</span> <span class="nt">-irH</span> <span class="nt">drupal_http_request</span> <span class="o">.</span> <span class="o">|</span> <span class="nt">grep</span> <span class="nt">solr</span>
+<span class="nt">sites</span><span class="o">/</span><span class="nt">all</span><span class="o">/</span><span class="nt">modules</span><span class="o">/</span><span class="nt">contrib</span><span class="o">/</span><span class="nt">apachesolr</span><span class="o">/</span><span class="nt">Drupal_Apache_Solr_Service</span><span class="p">.</span><span class="nc">php</span><span class="o">:</span> <span class="o">$</span><span class="nt">result</span> <span class="o">=</span> <span class="nt">drupal_http_request</span><span class="o">($</span><span class="nt">url</span><span class="o">,</span> <span class="o">$</span><span class="nt">headers</span><span class="o">,</span> <span class="o">$</span><span class="nt">method</span><span class="o">,</span> <span class="o">$</span><span class="nt">content</span><span class="o">);</span>
+</pre></div>
+
+
+<p>I added "drupal_set_message(check_plain(\$url));" and I saw the query
+printed in my browser. And it was a huge query...</p>
+<h2>The hard way - anything else</h2>
+<p>A lot of the time we would host custom CMS or code that doesn't isn't
+maintained by the same developers anymore; in those cases it's much
+faster to do the debugging ourselves without digging into the code. If
+you're running <strong>SmartOS</strong> and have access to <strong>truss</strong>, this is how to
+go about it (strace can probably do something similar in Linux).<br>
+This is actually how I went about it before I realised Drupal probably
+has an easier way for me to debug the issue.</p>
+<div class="highlight"><pre><span></span># truss -o /tmp/truss -wall -rall -vall -p $(pgrep httpd)
+</pre></div>
+
+
+<p>It will help to have a clone of your server or a dev environment so that
+the truss output is less messy to read.<br>
+Run this and do a search on your website. Wait until it finishes and
+Ctrl+C truss.</p>
+<p>Search for the query:</p>
+<div class="highlight"><pre><span></span># grep -n &quot;G E T / s o l r / s e l e c t &quot; /tmp/truss
+248606:24614: G E T / s o l r / s e l e c t ? f l = i d % 2 C n i d % 2 C t
+870437:24611: G E T / s o l r / s e l e c t ? f l = i d % 2 C n i d % 2 C t
+</pre></div>
+
+
+<p>You can also search for 8080 or whichever port Tomcat is running on and
+the GET line should be not far below:</p>
+<div class="highlight"><pre><span></span># grep -n AF_INET /tmp/truss.1 | grep 8080
+248599:24614: AF_INET name = 127.0.0.1 port = 8080
+870430:24611: AF_INET name = 127.0.0.1 port = 8080
+</pre></div>
+
+
+<p>Go to line 248606 in your truss output and your query should be there,
+probably spanning a few send() blocks, it should end with a
+"\r\n\r\n" string.<br>
+After that you should see a recv() block with a response from
+Tomcat/Solr. For me, it just showed a "400 Bad Request" error. When I
+ran the extracted query with wget, I saw this:</p>
+<div class="highlight"><pre><span></span>Resolving localhost (localhost)... 127.0.0.1
+Connecting to localhost (localhost)|127.0.0.1|:8080... connected.
+HTTP request sent, awaiting response... 400 Bad Request
+2015-02-24 15:26:15 ERROR 400: Bad Request.
+</pre></div>
+
+
+<p>Once you have the truss output cut down to just the query, you can
+remove all the whitespaces, PIDs and system calls; all that will remain
+is the actual query that Drupal is running. Mine was quite big:</p>
+<div class="highlight"><pre><span></span># wc /tmp/truss 
+1 9 39733 /tmp/truss
+</pre></div>
+
+
+<p>That's 39,733 characters!</p>
+<h1>Solution was rather straightforward</h1>
+<p>So I discovered that the query that Drupal send to Tomcat was humongous.
+After a lot of pointless debugging,enabling log files, and looking in
+the wrong place, it struck me that it was probably hitting a character
+limit. After all the query was not hitting Solr so it must be Tomcat
+refusing to process it.</p>
+<p>A quick search turned up that the default URL limit on Tomcat was
+4096... The setting you need to change is <strong>maxHttpHeaderSize</strong> in
+<a href="http://serverfault.com/questions/56691/whats-the-maximum-url-length-in-tomcat">Tomcat's
+server.xml</a>.
+I set it to 65536 to accommodate some of big queries that were running
+and sure enough everything worked fine after a restart!</p>
+<p>Retrospectively, I googled the issue again and came across <a href="https://www.drupal.org/node/443980">this
+link</a> which might be helpful it the
+above doesn't resolve your issue.</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/smtp-authentication-in-exim.html#smtp-authentication-in-exim">SMTP authentication in Exim</a></h2>
+    <p>
+      Posted on Wed 28 January 2015 in <a href="https://thanhpham.cloud/category/linux-sysadmin.html">Linux, SysAdmin</a>
+      &#8226; Tagged with
+      <a href="https://thanhpham.cloud/tag/auth.html">auth</a>,      <a href="https://thanhpham.cloud/tag/authentication.html">authentication</a>,      <a href="https://thanhpham.cloud/tag/exim.html">exim</a>,      <a href="https://thanhpham.cloud/tag/exim4.html">exim4</a>,      <a href="https://thanhpham.cloud/tag/gmail.html">gmail</a>,      <a href="https://thanhpham.cloud/tag/login.html">login</a>,      <a href="https://thanhpham.cloud/tag/plain.html">plain</a>,      <a href="https://thanhpham.cloud/tag/sha1.html">sha1</a>,      <a href="https://thanhpham.cloud/tag/smtp.html">smtp</a>,      <a href="https://thanhpham.cloud/tag/smtpauth.html">smtpauth</a>    </p>
+  </header>
+  <div>
+      <h4>No more Google SMTP for your aliases</h4>
+<p>Since August last year, Google have grandfathered a feature in GMail
+that allows you to create aliases in your account and send emails as
+those aliases from their SMTP servers:</p>
+<p><a href="http://googlesystem.blogspot.co.uk/2014/08/external-addresses-no-longer-use-gmail.html">http://googlesystem.blogspot.co.uk/2014/08/external-addresses-no-longer-use-gmail.html</a></p>
+<p>For any new aliases, you will need to provide your own SMTP servers.<br>
+If you have a VPS of some sort, this is how you can set up simple SMTP
+authentication in Exim to pipe your emails through your server and keep
+using the Google web interface.</p>
+<h4>SMTP Authentication</h4>
+<p>LOGIN and PLAIN auth differs in the fact that LOGIN will prompt for the
+username/password explicitely whereas in PLAIN the client is expected to
+send both in one blob.<br>
+Practically the only difference is an additional null byte at the
+beginning of the LOGIN blob send to the server.</p>
+<h5>LOGIN</h5>
+<p>How to set up simple SMTP LOGIN auth with SHA1 (alternative is crypt or
+MD5..):</p>
+<p>exim.conf file (based on a  Ubuntu template):</p>
+<div class="highlight"><pre><span></span>...
+CONFDIR = /etc/exim4/
+...
+begin authenticators
+
+LOGIN:
+driver = plaintext
+public_name = LOGIN
+server_prompts = <span class="ni">&amp;lt;</span>| Username: | Password:
+server_advertise_condition = <span class="cp">${</span><span class="k">if</span> <span class="n">def</span><span class="p">:</span><span class="n">tls_cipher</span> <span class="cp">}</span>
+server_condition = &quot;<span class="cp">${</span><span class="k">if</span> <span class="n">crypteq</span> <span class="p">{</span><span class="err">$</span><span class="n">auth2</span><span class="cp">}</span>{\\\{sha1\\\}<span class="cp">${</span><span class="n">extract</span><span class="p">{</span><span class="mi">1</span><span class="cp">}</span>{:}{<span class="cp">${</span><span class="n">lookup</span><span class="p">{</span><span class="err">$</span><span class="n">auth1</span><span class="cp">}</span>lsearch{CONFDIR/passwd}{<span class="nv">$value</span>}{*:*}}}}}{1}{0}}&quot;
+server_set_id = <span class="nv">$auth1</span>
+</pre></div>
+
+
+<p>passwd file:</p>
+<div class="highlight"><pre><span></span><span class="nl">username</span><span class="p">:[</span><span class="n">PASSWORD</span> <span class="n">HASH</span><span class="p">]</span>
+</pre></div>
+
+
+<p>How to generate password hash:</p>
+<div class="highlight"><pre><span></span>perl -MDigest::SHA=sha1_hex -e &#39;print sha1_hex($ARGV[0]),&quot;\n&quot;&#39; [PASSWORD]
+</pre></div>
+
+
+<p>To test this, you need to encode the username/pass in base64:</p>
+<div class="highlight"><pre><span></span><span class="err">#</span> <span class="nt">cat</span> <span class="nt">encode</span><span class="p">.</span><span class="nc">pl</span>
+<span class="nt">use</span> <span class="nt">MIME</span><span class="p">::</span><span class="nd">Base64</span><span class="o">;</span>
+<span class="nt">printf</span> <span class="o">(</span><span class="s2">&quot;%s&quot;</span><span class="o">,</span> <span class="nt">encode_base64</span><span class="o">(</span><span class="nt">eval</span> <span class="s2">&quot;\&quot;$ARGV</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s2">\&quot;&quot;</span><span class="o">));</span>
+<span class="err">#</span> <span class="nt">perl</span> <span class="nt">encode</span><span class="p">.</span><span class="nc">pl</span> <span class="s1">&#39;username\0password&#39;</span>
+<span class="nt">dXNlcm5hbWUAcGFzc3dvcmQ</span><span class="o">=</span>
+<span class="o">...</span>
+<span class="err">#</span> <span class="nt">exim</span> <span class="nt">-bh</span> <span class="nt">localhost</span>
+<span class="o">&amp;</span><span class="nt">gt</span><span class="o">;</span> <span class="nt">ehlo</span> <span class="nt">test</span>
+<span class="o">&amp;</span><span class="nt">gt</span><span class="o">;</span> <span class="nt">auth</span> <span class="nt">login</span> <span class="nt">dXNlcm5hbWUAcGFzc3dvcmQ</span><span class="o">=</span>
+</pre></div>
+
+
+<h5>PLAIN</h5>
+<p>If you'd rather have a PLAIN auth, just change the snippet in exim.conf
+to:</p>
+<p>exim.conf file</p>
+<div class="highlight"><pre><span></span>...
+CONFDIR = /etc/exim4/
+...
+begin authenticators
+
+PLAIN:
+driver = plaintext
+public_name = PLAIN
+server_advertise_condition = <span class="cp">${</span><span class="k">if</span> <span class="n">def</span><span class="p">:</span><span class="n">tls_cipher</span> <span class="cp">}</span>
+server_condition = &quot;<span class="cp">${</span><span class="k">if</span> <span class="n">crypteq</span> <span class="p">{</span><span class="err">$</span><span class="n">auth3</span><span class="cp">}</span>{\\\{sha1\\\}<span class="cp">${</span><span class="n">extract</span><span class="p">{</span><span class="mi">1</span><span class="cp">}</span>{:}{<span class="cp">${</span><span class="n">lookup</span><span class="p">{</span><span class="err">$</span><span class="n">auth2</span><span class="cp">}</span>lsearch{CONFDIR/passwd}{<span class="nv">$value</span>}{*:*}}}}}{1}{0}}&quot;
+server_set_id = <span class="nv">$auth2</span>
+</pre></div>
+
+
+<p>to test, run:</p>
+<div class="highlight"><pre><span></span># perl encode.pl &#39;\0username\0password&#39;
+AHVzZXJuYW1lAHBhc3N3b3Jk
+# exim -bh localhost
+&amp;gt; ehlo test
+&amp;gt; auth plain AHVzZXJuYW1lAHBhc3N3b3Jk
+</pre></div>
+
+
+<h5>SSL</h5>
+<p>Test with SSL by using this instead of 'exim -bh':</p>
+<div class="highlight"><pre><span></span>openssl s_client -connect server.com:465
+</pre></div>
+
+
+<h4>Links</h4>
+<p><a href="http://www.exim.org/exim-html-current/doc/html/spec_html/ch-smtp_authentication.html">http://www.exim.org/exim-html-current/doc/html/spec_html/ch-smtp_authentication.html</a></p>
+<p><a href="http://www.exim.org/exim-html-current/doc/html/spec_html/ch-string_expansions.html">http://www.exim.org/exim-html-current/doc/html/spec_html/ch-string_expansions.html</a></p>
+<p><a href="https://www.debian-administration.org/article/280/HowTo_Setup_Basic_SMTP_AUTH_in_Exim4">https://www.debian-administration.org/article/280/HowTo_Setup_Basic_SMTP_AUTH_in_Exim4</a></p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/updating-and-resetting-raritan-dominion-px-pdus.html#updating-and-resetting-raritan-dominion-px-pdus">Updating and resetting Raritan Dominion PX PDUs</a></h2>
+    <p>
+      Posted on Tue 29 May 2012 in <a href="https://thanhpham.cloud/category/sysadmin.html">SysAdmin</a>
+      &#8226; Tagged with
+      <a href="https://thanhpham.cloud/tag/pdu.html">pdu</a>,      <a href="https://thanhpham.cloud/tag/raritan.html">raritan</a>,      <a href="https://thanhpham.cloud/tag/reset.html">reset</a>    </p>
+  </header>
+  <div>
+      <p>I just had the pleasure of resetting some PDUs to factory defaults
+today. The models in question were Raritan Dominion PX20
+(DPXR20A-16/32). After a mostly fruitless search for 'raritan px reset
+to factory default' and 'raritan px restore to factory default', I have
+managed to dig out a way to complete my task.</p>
+<p>Nothing like homemade commando plugs with kettle leads, courtesy of my
+colleague JT.</p>
+<p><img alt="Commando leads" src="http://lamercake.org/gallery/blog/raritan/IMG_20120529_144041.jpg"></p>
+<p>First I needed to upgrade the firmware to the latest version as the
+command didn't seem to run on v1.3 for me. Grabbed my binaries from the
+<a href="http://www.raritan.com/support/dominion-px/" title="Raritan PX20 firmware">Raritan
+website</a>.
+I had to flash v1.5.2 before 1.5.5, YMMV. You can upgrade firmware using
+the web interface:</p>
+<ul>
+<li>Hook up to the console of the PDU with a DB9 to USB converter (top)
+    and a special Raritan DB9 to Ethernet console cable (bottom), like
+    this:</li>
+<li><img alt="Console cables" src="http://lamercake.org/gallery/blog/raritan/IMG_20120528_152609.jpg" title="Console cables"></li>
+<li>One of these, a Cisco compatible cable, won't work:</li>
+<li><img alt="Wrong console cables" src="http://lamercake.org/gallery/blog/raritan/IMG_20120529_144401.jpg" title="Wrong console cables"></li>
+<li>As I use Arch Linux I just ran the following as root:</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span></span>screen /dev/ttyUSB0
+</pre></div>
+
+
+<ul>
+<li>Set the IP configuration to dhcp: 'config' at the prompt and then
+    'dhcp'</li>
+</ul>
+<!-- -->
+
+<div class="highlight"><pre><span></span>[Old IP address] command: config
+IP autoconfiguration (none/dhcp/bootp) [none]: dhcp
+</pre></div>
+
+
+<p>Press [Enter] a few times until the old IP address becomes the new one,
+you might have to unplug the network cable and plug it back in. Proceed
+with the firmware upgrade in the web browser!</p>
+<p>Once the upgrade is completed, go into 'clp' mode in the console and
+type:</p>
+<div class="highlight"><pre><span></span><span class="nt">clp</span><span class="o">:/</span><span class="nt">-</span><span class="o">&amp;</span><span class="nt">gt</span><span class="o">;</span> <span class="nt">set</span> <span class="o">/</span><span class="nt">system1</span> <span class="nt">FactoryDefaults</span><span class="o">=</span><span class="nt">true</span>
+</pre></div>
+
+
+<p>Sorted! Now your PDU is ready to go on eBay :)</p>
+<p>For more detailed information, check out the <a href="http://www.raritan.com/help/px/v1.5.5/en/#3394" title="Raritan Dominion PX Online Help">Raritan Dominion PX Online
+Help
+site</a>.</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/php-errors-not-displaying-in-iis.html#php-errors-not-displaying-in-iis">PHP errors not displaying in IIS</a></h2>
+    <p>
+      Posted on Fri 18 May 2012 in <a href="https://thanhpham.cloud/category/sysadmin.html">SysAdmin</a>
+      &#8226; Tagged with
+      <a href="https://thanhpham.cloud/tag/errors.html">errors</a>,      <a href="https://thanhpham.cloud/tag/iis.html">iis</a>,      <a href="https://thanhpham.cloud/tag/php.html">php</a>    </p>
+  </header>
+  <div>
+      <p>A customer called in today saying that their site is not working after
+re-pointing the DNS. No changes have been made in a week and it was
+working fine before. Typical.</p>
+<p>So I turned on Firebug and notice it's a 500 error. Logged into the
+server and saw it's a WordPress instance running with PHP on IIS. Great!
+For some reason the pages in the browser are completely blank. I loaded
+up the page from a local browser and the same thing happens. I double
+checked that detailed errors messages have been enabled in IIS and they
+were. Very strange.</p>
+<p>The IIS log was as unhelpful as ever so I turned to DuckDuckGo (nearly
+wrote 'Google' there but I switched my search engine recently). Now I'm
+not usually used to WordPress in IIS so didn't think of checking the
+php.ini file; later on it turned out that error messages option was not
+set  but it's supposedly on by default but errors just decided not to
+show.</p>
+<p>Cutting to the chase, I dropped the following into the PHP file:</p>
+<div class="highlight"><pre><span></span>ini_set(&#39;display_errors&#39;,true);
+</pre></div>
+
+
+<p>This uncovered  a plugin was installed twice and WordPress was having
+none of that. Renamed the file and all was well again. Thanks to <a href="http://www.iis-answers.com/microsoft/IIS/33603808/iis-not-showing-php-errors.aspx">Sadi
+from
+iis-answers.com</a>
+for pointing that out!</p>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h1><a href="https://thanhpham.cloud/modding-the-filco-majestouch-tenkeyless.html#modding-the-filco-majestouch-tenkeyless">Modding the Filco Majestouch Tenkeyless</a></h2>
+    <p>
+      Posted on Wed 16 May 2012 in <a href="https://thanhpham.cloud/category/uncategorized.html">Uncategorized</a>
+      &#8226; Tagged with
+      <a href="https://thanhpham.cloud/tag/cherrymx.html">cherrymx</a>,      <a href="https://thanhpham.cloud/tag/filco.html">filco</a>,      <a href="https://thanhpham.cloud/tag/keyboard.html">keyboard</a>,      <a href="https://thanhpham.cloud/tag/majestouch.html">majestouch</a>,      <a href="https://thanhpham.cloud/tag/modding.html">modding</a>,      <a href="https://thanhpham.cloud/tag/tenkeyless.html">tenkeyless</a>    </p>
+  </header>
+  <div>
+      <p>I've recently made an investment and purchased a Filco Majestouch 2
+Tenkeyless, blue switch edition. It was a toss-up between that and the
+HappyHacker and I decided I like the arrow keys too much to let go.
+<a href="http://www.keyboardco.com/" title="Keyboard Company">KeyboardCo</a> have
+exclusive distribution rights here in the UK so I got mine from there.
+Next day delivery, top notch service.</p>
+<p><a href="http://lamercake.org/gallery/blog/filco/#&amp;gid=1&amp;pid=1"><img alt="Filco Majestouch 2 Tenkeyless
+boxed" src="http://lamercake.org/gallery/blog/filco/IMG_20120425_095915.jpg" title="Filco Majestouch 2 Tenkeyless boxed"></a></p>
+<p>Just above it is my Logitech Wave; quite a nifty design but the quality
+isn't amazing and the keys started to stick after about 6 months. Not
+bad for £20 though.</p>
+<p>The Filco is quite a pricey beast at £114 but I figured as I'm typing
+away every day, it will definitely pay itself off.</p>
+<p><a href="http://lamercake.org/gallery/blog/filco/#&amp;gid=1&amp;pid=2"><img alt="Filco Majestouch 2
+Tenkeyless" src="http://lamercake.org/gallery/blog/filco/IMG_20120425_100426.jpg" title="Filco Majestouch 2 Tenkeyless"></a></p>
+<p>Shortly after I showed it off to everyone (who cared and had any
+interest in keyboards), my friend decided to get a full sized one from
+<a href="http://www.wasdkeyboards.com/" title="WASD Keyboards">WASD keyboards</a>. For
+those who don't know and haven't clicked the link yet, WASD sell
+mechanical keyboards, but what makes them different from the competition
+though is that they let you fully <a href="https://twitter.com/#!/firesock/status/202824531398770688/photo/1" title="firesock's WASD keyboard">customise your
+keycaps</a>!</p>
+<p>As WASD are based on the other side of the pond, I decided to piggy back
+on his order and get some custom keys and <a href="http://www.wasdkeyboards.com/index.php/cherry-mx-rubber-switch-dampeners.html" title="Cherry MX o-rings">some
+dampeners</a>
+(at the bottom of the link there is a noise comparison between with and
+without o-rings).</p>
+<p><a href="http://lamercake.org/gallery/blog/filco/#&amp;gid=1&amp;pid=3"><img alt="Filco and
+parts" src="http://lamercake.org/gallery/blog/filco/IMG_20120516_203000.jpg" title="Filco and parts"></a></p>
+<p>Now that little baby on the bottom left is a keycap puller that came
+free with the WASD keyboard but you can get it separately too. Very nice
+of them to include that and it will definitely come in handy if one day
+you decide to customise your keycaps or maybe just clean your keyboard.</p>
+<p>Starting with the Esc key and the qwerty row.</p>
+<p><a href="http://lamercake.org/gallery/blog/filco/#&amp;gid=1&amp;pid=4"><img alt="Qwerty and Esc
+out" src="http://lamercake.org/gallery/blog/filco/IMG_20120516_203617.jpg" title="Qwerty and Esc out"></a></p>
+<p>Nice and easy. Now I heard that the bigger keys are quite different and
+it's quite easy to break them if you pull them out like a madman. I
+decided to consult the infinite wisdom of the Internet, most precisely
+Youtube, for some advice. Stumbled upon <a href="http://youtu.be/1iL8_2Zr36I" title="How to change / remove Filco bigger keycaps">this
+video</a>
+which was most helpful! You might want to mute the music though. And so
+off the big keys went.</p>
+<p><a href="http://lamercake.org/gallery/blog/filco/#&amp;gid=1&amp;pid=5"><img alt="Bigger keys are
+off" src="http://lamercake.org/gallery/blog/filco/IMG_20120516_211837.jpg" title="Bigger keys are off"></a></p>
+<p>There are only 4 long keys on this: the 3 visible ones and the
+backspace. After about 1.5 hours, all the keys were dampened. And here
+it is in its full glory:</p>
+<p><a href="http://lamercake.org/gallery/blog/filco/#&amp;gid=1&amp;pid=6"><img alt="Modded Filco MJ
+TKL" src="http://lamercake.org/gallery/blog/filco/IMG_20120516_215214.jpg" title="Modded Filco MJ TKL"></a></p>
+<p>The picture doesn't show it very well but my 'Windows' keys, or 'Meta'
+keys as I prefer to call them now, have a Tux on them.</p>
+<p>I must say, the dampened keys are gonna take a while to get used to but
+they are much quieter than before. Needless to say the feel is amazing
+and it's definitely one of the best keyboards I've typed on so far and
+I've owned quite a few (Logitech Wave/G15, countless scissor and laptop
+keyboards as well as stock DELL keyboards). If your job involves a lot
+of tapping away, this will definitely improve your typing comforts.</p>
+<p>For more reference, I urge you to read:</p>
+<ul>
+<li>
+<p>the <a href="http://www.overclock.net/t/491752/mechanical-keyboard-guide" title="Overclock.net Mechanical Keyboard Guide">Overclock.net Mechanical Keyboard
+Guide</a></p>
+</li>
+<li>
+<p>the <a href="http://elitekeyboards.com/support.php?lang=en" title="Elite Keyboards FAQ">Elite Keyboards
+FAQ</a></p>
+</li>
+</ul>
+<p>And if you just want a chat, sign up to the <a href="http://geekhack.org/" title="Geek Hack forums">GeekHack
+forums</a>.</p>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn" href="https://thanhpham.cloud/index3.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+      <a class="btn float-right" href="https://thanhpham.cloud/index.html">
+        Newer Posts <i class="fa fa-angle-right"></i>
+      </a>
+  </div>
+
+    <footer>
+      <p>&copy; Thanh </p>
+<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Cloud Magic ",
+  "url" : "https://thanhpham.cloud",
+  "image": "https://thanhpham.cloud/upload/profile.jpg",
+  "description": ""
+}
+</script></body>
+</html>
