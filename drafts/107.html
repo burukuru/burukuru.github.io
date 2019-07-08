@@ -1,20 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/pygments.min.css">
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/font-awesome.min.css">
-
   <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/solid.css">
+
+
+
+
+
+
+
 <meta name="author" content="Thanh" />
-<meta name="description" content="Having recently acquired a new PC, after 4 arduous heavy-overclocked years with my previous one, I had to install Gentoo again. I've been a Gentoo user for a few years now but I've only installed it a couple of times. Here are a handful of hiccups I ran into and …" />
+<meta name="description" content="Having recently acquired a new PC, after 4 arduous heavy-overclocked years with my previous one, I had to install Gentoo again. I&#39;ve been a Gentoo user for a few years now but I&#39;ve only installed it a couple of times. Here are a handful of hiccups I ran into and …" />
 <meta name="keywords" content="gentoo kde">
+
 <meta property="og:site_name" content="Cloud Magic"/>
 <meta property="og:title" content="Installing Gentoo"/>
-<meta property="og:description" content="Having recently acquired a new PC, after 4 arduous heavy-overclocked years with my previous one, I had to install Gentoo again. I've been a Gentoo user for a few years now but I've only installed it a couple of times. Here are a handful of hiccups I ran into and …"/>
+<meta property="og:description" content="Having recently acquired a new PC, after 4 arduous heavy-overclocked years with my previous one, I had to install Gentoo again. I&#39;ve been a Gentoo user for a few years now but I&#39;ve only installed it a couple of times. Here are a handful of hiccups I ran into and …"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://thanhpham.cloud/drafts/107.html"/>
 <meta property="og:type" content="article"/>
@@ -23,7 +38,10 @@
 <meta property="article:author" content="https://thanhpham.cloud/author/thanh.html">
 <meta property="article:section" content="Uncategorized"/>
 <meta property="article:tag" content="gentoo kde"/>
-<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">  <title>Cloud Magic &ndash; Installing Gentoo</title>
+<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">
+
+  <title>Cloud Magic &ndash; Installing Gentoo</title>
+
 </head>
 <body>
   <aside>
@@ -32,32 +50,70 @@
         <img src="https://thanhpham.cloud/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
       </a>
       <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
-      <p></p>
+
+
       <nav>
         <ul class="list">
           <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+
         </ul>
       </nav>
+
       <ul class="social">
-        <li><a class="sc-github" href="http://github.com/burukuru" target="_blank"><i class="fa fa-github"></i></a></li>
-        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/thanh-pham-cloud/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-        <li><a class="sc-twitter" href="http://twitter.com/burukuru" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a class="sc-flickr" href="http://flickr.com/burukuru" target="_blank"><i class="fa fa-flickr"></i></a></li>
+          <li>
+            <a  class="sc-github" href="http://github.com/burukuru" target="_blank">
+            <i class="fab fa-github">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-linkedin" href="https://www.linkedin.com/in/thanh-pham-cloud/" target="_blank">
+            <i class="fab fa-linkedin">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-medium" href="https://medium.com/@burukuru" target="_blank">
+            <i class="fab fa-medium">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-twitter" href="http://twitter.com/burukuru" target="_blank">
+            <i class="fab fa-twitter">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-flickr" href="http://flickr.com/burukuru" target="_blank">
+            <i class="fab fa-flickr">
+            </i>
+          </a></li>
       </ul>
     </div>
+
+
   </aside>
   <main>
+
     <nav>
-      <a href="https://thanhpham.cloud">Home</a>
+      <a href="https://thanhpham.cloud">    Home
+</a>
+
       <a href="https://thanhpham.cloud/categories.html">Categories</a>
       <a href="https://thanhpham.cloud/tags.html">Tags</a>
+
+
     </nav>
 
-<article>
+<article class="single">
   <header>
+      
     <h1 id="107">Installing Gentoo</h1>
-    <p>Posted on Sat 30 May 2015 in <a href="https://thanhpham.cloud/category/uncategorized.html">Uncategorized</a></p>
+    <p>
+          Posted on Sat 30 May 2015 in <a href="https://thanhpham.cloud/category/uncategorized.html">Uncategorized</a>
+
+
+    </p>
   </header>
+
+
   <div>
     <p>Having recently acquired a new PC, after 4 arduous heavy-overclocked
 years with my previous one, I had to install Gentoo again.<br>
@@ -101,28 +157,32 @@ whatever else I needed again.</p>
       <a href="https://thanhpham.cloud/tag/gentoo-kde.html">gentoo kde</a>
     </p>
   </div>
+
+
+
+
+
 </article>
 
     <footer>
-      <p>&copy; Thanh </p>
-<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
   </main>
+
+
+
+
 <script type="application/ld+json">
 {
-  "@context": "http://schema.org",
-  "@type": "BlogPosting",
-  "name": "Installing Gentoo",
-  "headline": "Installing Gentoo",
-  "datePublished": "2015-05-30 14:41:00+01:00",
-  "dateModified": "",
-  "author": {
-    "@type": "Person",
-    "name": "Thanh",
-    "url": "https://thanhpham.cloud/author/thanh.html"
-  },
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Cloud Magic ",
+  "url" : "https://thanhpham.cloud",
   "image": "https://thanhpham.cloud/profile.jpg",
-  "url": "https://thanhpham.cloud/drafts/107.html",
-  "description": "Having recently acquired a new PC, after 4 arduous heavy-overclocked years with my previous one, I had to install Gentoo again. I've been a Gentoo user for a few years now but I've only installed it a couple of times. Here are a handful of hiccups I ran into and …"
+  "description": ""
 }
-</script></body>
+</script>
+
+</body>
 </html>

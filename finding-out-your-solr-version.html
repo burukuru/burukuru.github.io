@@ -1,20 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/pygments.min.css">
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/font-awesome.min.css">
-
   <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/solid.css">
+
+
+
+
+
+
+
 <meta name="author" content="Thanh" />
-<meta name="description" content="I can never remember how to do this without the GUI so here is the quick command to detect the Solr version you're currently running: wget -q -O- localhost:8080/solr/admin/registry.jsp | grep -E "spec-version|impl-version" A helpful StackOverflow link:https://stackoverflow.com/questions/2395089/how-do-i-find-out-version-of-currently-running-solr" />
+<meta name="description" content="I can never remember how to do this without the GUI so here is the quick command to detect the Solr version you&#39;re currently running: wget -q -O- localhost:8080/solr/admin/registry.jsp | grep -E &#34;spec-version|impl-version&#34; A helpful StackOverflow link:https://stackoverflow.com/questions/2395089/how-do-i-find-out-version-of-currently-running-solr" />
 <meta name="keywords" content="solr, tomcat">
+
 <meta property="og:site_name" content="Cloud Magic"/>
 <meta property="og:title" content="Finding out your Solr version"/>
-<meta property="og:description" content="I can never remember how to do this without the GUI so here is the quick command to detect the Solr version you're currently running: wget -q -O- localhost:8080/solr/admin/registry.jsp | grep -E "spec-version|impl-version" A helpful StackOverflow link:https://stackoverflow.com/questions/2395089/how-do-i-find-out-version-of-currently-running-solr"/>
+<meta property="og:description" content="I can never remember how to do this without the GUI so here is the quick command to detect the Solr version you&#39;re currently running: wget -q -O- localhost:8080/solr/admin/registry.jsp | grep -E &#34;spec-version|impl-version&#34; A helpful StackOverflow link:https://stackoverflow.com/questions/2395089/how-do-i-find-out-version-of-currently-running-solr"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://thanhpham.cloud/finding-out-your-solr-version.html"/>
 <meta property="og:type" content="article"/>
@@ -24,7 +39,10 @@
 <meta property="article:section" content="SysAdmin"/>
 <meta property="article:tag" content="solr"/>
 <meta property="article:tag" content="tomcat"/>
-<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">  <title>Cloud Magic &ndash; Finding out your Solr version</title>
+<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">
+
+  <title>Cloud Magic &ndash; Finding out your Solr version</title>
+
 </head>
 <body>
   <aside>
@@ -33,32 +51,70 @@
         <img src="https://thanhpham.cloud/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
       </a>
       <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
-      <p></p>
+
+
       <nav>
         <ul class="list">
           <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+
         </ul>
       </nav>
+
       <ul class="social">
-        <li><a class="sc-github" href="http://github.com/burukuru" target="_blank"><i class="fa fa-github"></i></a></li>
-        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/thanh-pham-cloud/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-        <li><a class="sc-twitter" href="http://twitter.com/burukuru" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a class="sc-flickr" href="http://flickr.com/burukuru" target="_blank"><i class="fa fa-flickr"></i></a></li>
+          <li>
+            <a  class="sc-github" href="http://github.com/burukuru" target="_blank">
+            <i class="fab fa-github">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-linkedin" href="https://www.linkedin.com/in/thanh-pham-cloud/" target="_blank">
+            <i class="fab fa-linkedin">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-medium" href="https://medium.com/@burukuru" target="_blank">
+            <i class="fab fa-medium">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-twitter" href="http://twitter.com/burukuru" target="_blank">
+            <i class="fab fa-twitter">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-flickr" href="http://flickr.com/burukuru" target="_blank">
+            <i class="fab fa-flickr">
+            </i>
+          </a></li>
       </ul>
     </div>
+
+
   </aside>
   <main>
+
     <nav>
-      <a href="https://thanhpham.cloud">Home</a>
+      <a href="https://thanhpham.cloud">    Home
+</a>
+
       <a href="https://thanhpham.cloud/categories.html">Categories</a>
       <a href="https://thanhpham.cloud/tags.html">Tags</a>
+
+
     </nav>
 
-<article>
+<article class="single">
   <header>
+      
     <h1 id="finding-out-your-solr-version">Finding out your Solr version</h1>
-    <p>Posted on Thu 01 October 2015 in <a href="https://thanhpham.cloud/category/sysadmin.html">SysAdmin</a></p>
+    <p>
+          Posted on Thu 01 October 2015 in <a href="https://thanhpham.cloud/category/sysadmin.html">SysAdmin</a>
+
+
+    </p>
   </header>
+
+
   <div>
     <p>I can never remember how to do this without the GUI so here is the quick
 command to detect the Solr version you're currently running:</p>
@@ -75,28 +131,32 @@ link:<a href="https://stackoverflow.com/questions/2395089/how-do-i-find-out-vers
       <a href="https://thanhpham.cloud/tag/tomcat.html">tomcat</a>
     </p>
   </div>
+
+
+
+
+
 </article>
 
     <footer>
-      <p>&copy; Thanh </p>
-<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
   </main>
+
+
+
+
 <script type="application/ld+json">
 {
-  "@context": "http://schema.org",
-  "@type": "BlogPosting",
-  "name": "Finding out your Solr version",
-  "headline": "Finding out your Solr version",
-  "datePublished": "2015-10-01 10:47:00+01:00",
-  "dateModified": "",
-  "author": {
-    "@type": "Person",
-    "name": "Thanh",
-    "url": "https://thanhpham.cloud/author/thanh.html"
-  },
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Cloud Magic ",
+  "url" : "https://thanhpham.cloud",
   "image": "https://thanhpham.cloud/profile.jpg",
-  "url": "https://thanhpham.cloud/finding-out-your-solr-version.html",
-  "description": "I can never remember how to do this without the GUI so here is the quick command to detect the Solr version you're currently running: wget -q -O- localhost:8080/solr/admin/registry.jsp | grep -E "spec-version|impl-version" A helpful StackOverflow link:https://stackoverflow.com/questions/2395089/how-do-i-find-out-version-of-currently-running-solr"
+  "description": ""
 }
-</script></body>
+</script>
+
+</body>
 </html>

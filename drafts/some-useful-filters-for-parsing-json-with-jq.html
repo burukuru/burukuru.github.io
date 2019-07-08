@@ -1,20 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/pygments.min.css">
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/font-awesome.min.css">
-
   <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/solid.css">
+
+
+
+
+
+
+
 <meta name="author" content="Thanh" />
-<meta name="description" content="I've been told jq is the new cool JSON parser. As I used to use the 'json' command that came from npm, I had to adapt my scripts slightly. jq -r . Re-arrange the output: jq -r '.[] | {name: .name, dob: .dob} | join (" ")' jq -r '[.options[] | select(.name=="blah")'" />
+<meta name="description" content="I&#39;ve been told jq is the new cool JSON parser. As I used to use the &#39;json&#39; command that came from npm, I had to adapt my scripts slightly. jq -r . Re-arrange the output: jq -r &#39;.[] | {name: .name, dob: .dob} | join (&#34; &#34;)&#39; jq -r &#39;[.options[] | select(.name==&#34;blah&#34;)&#39;" />
 <meta name="keywords" content="">
+
 <meta property="og:site_name" content="Cloud Magic"/>
 <meta property="og:title" content="Some useful filters for parsing JSON with jq"/>
-<meta property="og:description" content="I've been told jq is the new cool JSON parser. As I used to use the 'json' command that came from npm, I had to adapt my scripts slightly. jq -r . Re-arrange the output: jq -r '.[] | {name: .name, dob: .dob} | join (" ")' jq -r '[.options[] | select(.name=="blah")'"/>
+<meta property="og:description" content="I&#39;ve been told jq is the new cool JSON parser. As I used to use the &#39;json&#39; command that came from npm, I had to adapt my scripts slightly. jq -r . Re-arrange the output: jq -r &#39;.[] | {name: .name, dob: .dob} | join (&#34; &#34;)&#39; jq -r &#39;[.options[] | select(.name==&#34;blah&#34;)&#39;"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://thanhpham.cloud/drafts/some-useful-filters-for-parsing-json-with-jq.html"/>
 <meta property="og:type" content="article"/>
@@ -22,7 +37,10 @@
 <meta property="article:modified_time" content=""/>
 <meta property="article:author" content="https://thanhpham.cloud/author/thanh.html">
 <meta property="article:section" content="Uncategorized"/>
-<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">  <title>Cloud Magic &ndash; Some useful filters for parsing JSON with jq</title>
+<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">
+
+  <title>Cloud Magic &ndash; Some useful filters for parsing JSON with jq</title>
+
 </head>
 <body>
   <aside>
@@ -31,32 +49,70 @@
         <img src="https://thanhpham.cloud/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
       </a>
       <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
-      <p></p>
+
+
       <nav>
         <ul class="list">
           <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+
         </ul>
       </nav>
+
       <ul class="social">
-        <li><a class="sc-github" href="http://github.com/burukuru" target="_blank"><i class="fa fa-github"></i></a></li>
-        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/thanh-pham-cloud/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-        <li><a class="sc-twitter" href="http://twitter.com/burukuru" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a class="sc-flickr" href="http://flickr.com/burukuru" target="_blank"><i class="fa fa-flickr"></i></a></li>
+          <li>
+            <a  class="sc-github" href="http://github.com/burukuru" target="_blank">
+            <i class="fab fa-github">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-linkedin" href="https://www.linkedin.com/in/thanh-pham-cloud/" target="_blank">
+            <i class="fab fa-linkedin">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-medium" href="https://medium.com/@burukuru" target="_blank">
+            <i class="fab fa-medium">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-twitter" href="http://twitter.com/burukuru" target="_blank">
+            <i class="fab fa-twitter">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-flickr" href="http://flickr.com/burukuru" target="_blank">
+            <i class="fab fa-flickr">
+            </i>
+          </a></li>
       </ul>
     </div>
+
+
   </aside>
   <main>
+
     <nav>
-      <a href="https://thanhpham.cloud">Home</a>
+      <a href="https://thanhpham.cloud">    Home
+</a>
+
       <a href="https://thanhpham.cloud/categories.html">Categories</a>
       <a href="https://thanhpham.cloud/tags.html">Tags</a>
+
+
     </nav>
 
-<article>
+<article class="single">
   <header>
+      
     <h1 id="some-useful-filters-for-parsing-json-with-jq">Some useful filters for parsing JSON with jq</h1>
-    <p>Posted on Wed 06 May 2015 in <a href="https://thanhpham.cloud/category/uncategorized.html">Uncategorized</a></p>
+    <p>
+          Posted on Wed 06 May 2015 in <a href="https://thanhpham.cloud/category/uncategorized.html">Uncategorized</a>
+
+
+    </p>
   </header>
+
+
   <div>
     <p>I've been told <a href="http://stedolan.github.io/jq/">jq</a> is the new cool JSON
 parser. As I used to use the 'json' command that came from npm, I had to
@@ -70,28 +126,32 @@ adapt my scripts slightly.</p>
     <p>
     </p>
   </div>
+
+
+
+
+
 </article>
 
     <footer>
-      <p>&copy; Thanh </p>
-<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
   </main>
+
+
+
+
 <script type="application/ld+json">
 {
-  "@context": "http://schema.org",
-  "@type": "BlogPosting",
-  "name": "Some useful filters for parsing JSON with jq",
-  "headline": "Some useful filters for parsing JSON with jq",
-  "datePublished": "2015-05-06 14:45:00+01:00",
-  "dateModified": "",
-  "author": {
-    "@type": "Person",
-    "name": "Thanh",
-    "url": "https://thanhpham.cloud/author/thanh.html"
-  },
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Cloud Magic ",
+  "url" : "https://thanhpham.cloud",
   "image": "https://thanhpham.cloud/profile.jpg",
-  "url": "https://thanhpham.cloud/drafts/some-useful-filters-for-parsing-json-with-jq.html",
-  "description": "I've been told jq is the new cool JSON parser. As I used to use the 'json' command that came from npm, I had to adapt my scripts slightly. jq -r . Re-arrange the output: jq -r '.[] | {name: .name, dob: .dob} | join (" ")' jq -r '[.options[] | select(.name=="blah")'"
+  "description": ""
 }
-</script></body>
+</script>
+
+</body>
 </html>

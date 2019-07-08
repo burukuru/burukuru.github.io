@@ -1,20 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/pygments.min.css">
-  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/css/font-awesome.min.css">
-
   <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/solid.css">
+
+
+
+
+
+
+
 <meta name="author" content="Thanh" />
-<meta name="description" content="I recently started using vim-terraform, it checks the syntax on save and keeps the config neat - great stuff! One problem I had was it remapped '' to 'za' which folds/unfolds functions. This was rather annoying as I use for bringing up the buffer list. In order to unmap/remap this …" />
+<meta name="description" content="I recently started using vim-terraform, it checks the syntax on save and keeps the config neat - great stuff! One problem I had was it remapped &#39;&#39; to &#39;za&#39; which folds/unfolds functions. This was rather annoying as I use for bringing up the buffer list. In order to unmap/remap this …" />
 <meta name="keywords" content="vim, terraform">
+
 <meta property="og:site_name" content="Cloud Magic"/>
 <meta property="og:title" content="Overriding Vim key bindings after ftplugin"/>
-<meta property="og:description" content="I recently started using vim-terraform, it checks the syntax on save and keeps the config neat - great stuff! One problem I had was it remapped '' to 'za' which folds/unfolds functions. This was rather annoying as I use for bringing up the buffer list. In order to unmap/remap this …"/>
+<meta property="og:description" content="I recently started using vim-terraform, it checks the syntax on save and keeps the config neat - great stuff! One problem I had was it remapped &#39;&#39; to &#39;za&#39; which folds/unfolds functions. This was rather annoying as I use for bringing up the buffer list. In order to unmap/remap this …"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://thanhpham.cloud/drafts/overriding-vim-key-bindings-after-ftplugin.html"/>
 <meta property="og:type" content="article"/>
@@ -24,7 +39,10 @@
 <meta property="article:section" content="Linux"/>
 <meta property="article:tag" content="vim"/>
 <meta property="article:tag" content="terraform"/>
-<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">  <title>Cloud Magic &ndash; Overriding Vim key bindings after ftplugin</title>
+<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">
+
+  <title>Cloud Magic &ndash; Overriding Vim key bindings after ftplugin</title>
+
 </head>
 <body>
   <aside>
@@ -33,32 +51,70 @@
         <img src="https://thanhpham.cloud/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
       </a>
       <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
-      <p></p>
+
+
       <nav>
         <ul class="list">
           <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+
         </ul>
       </nav>
+
       <ul class="social">
-        <li><a class="sc-github" href="http://github.com/burukuru" target="_blank"><i class="fa fa-github"></i></a></li>
-        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/thanh-pham-cloud/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-        <li><a class="sc-twitter" href="http://twitter.com/burukuru" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a class="sc-flickr" href="http://flickr.com/burukuru" target="_blank"><i class="fa fa-flickr"></i></a></li>
+          <li>
+            <a  class="sc-github" href="http://github.com/burukuru" target="_blank">
+            <i class="fab fa-github">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-linkedin" href="https://www.linkedin.com/in/thanh-pham-cloud/" target="_blank">
+            <i class="fab fa-linkedin">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-medium" href="https://medium.com/@burukuru" target="_blank">
+            <i class="fab fa-medium">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-twitter" href="http://twitter.com/burukuru" target="_blank">
+            <i class="fab fa-twitter">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-flickr" href="http://flickr.com/burukuru" target="_blank">
+            <i class="fab fa-flickr">
+            </i>
+          </a></li>
       </ul>
     </div>
+
+
   </aside>
   <main>
+
     <nav>
-      <a href="https://thanhpham.cloud">Home</a>
+      <a href="https://thanhpham.cloud">    Home
+</a>
+
       <a href="https://thanhpham.cloud/categories.html">Categories</a>
       <a href="https://thanhpham.cloud/tags.html">Tags</a>
+
+
     </nav>
 
-<article>
+<article class="single">
   <header>
+      
     <h1 id="overriding-vim-key-bindings-after-ftplugin">Overriding Vim key bindings after ftplugin</h1>
-    <p>Posted on Thu 22 June 2017 in <a href="https://thanhpham.cloud/category/linux.html">Linux</a></p>
+    <p>
+          Posted on Thu 22 June 2017 in <a href="https://thanhpham.cloud/category/linux.html">Linux</a>
+
+
+    </p>
   </header>
+
+
   <div>
     <p>I recently started using <a href="https://github.com/hashivim/vim-terraform">vim-terraform</a>, it checks the syntax on save and keeps the config neat - great stuff! One problem I had was it remapped '<Space>' to 'za' which folds/unfolds functions.
 This was rather annoying as I use <Space> for bringing up the <a href="https://github.com/jlanzarotta/bufexplorer">buffer list</a>.</p>
@@ -76,28 +132,32 @@ Creating your own <code>after-directory</code> will override this.</p>
       <a href="https://thanhpham.cloud/tag/terraform.html">terraform</a>
     </p>
   </div>
+
+
+
+
+
 </article>
 
     <footer>
-      <p>&copy; Thanh </p>
-<p>Built using <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
   </main>
+
+
+
+
 <script type="application/ld+json">
 {
-  "@context": "http://schema.org",
-  "@type": "BlogPosting",
-  "name": "Overriding Vim key bindings after ftplugin",
-  "headline": "Overriding Vim key bindings after ftplugin",
-  "datePublished": "2017-06-22 10:45:00+01:00",
-  "dateModified": "",
-  "author": {
-    "@type": "Person",
-    "name": "Thanh",
-    "url": "https://thanhpham.cloud/author/thanh.html"
-  },
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Cloud Magic ",
+  "url" : "https://thanhpham.cloud",
   "image": "https://thanhpham.cloud/profile.jpg",
-  "url": "https://thanhpham.cloud/drafts/overriding-vim-key-bindings-after-ftplugin.html",
-  "description": "I recently started using vim-terraform, it checks the syntax on save and keeps the config neat - great stuff! One problem I had was it remapped '' to 'za' which folds/unfolds functions. This was rather annoying as I use for bringing up the buffer list. In order to unmap/remap this …"
+  "description": ""
 }
-</script></body>
+</script>
+
+</body>
 </html>
