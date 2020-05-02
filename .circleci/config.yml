@@ -18,6 +18,8 @@ jobs:
             git clone git@github.com:burukuru/burukuru.github.io.git master
             cp -avr output/* master
             cd master
+            git config --global user.email "circleci_automation"
+            git config --global user.name "CircleCI Automation"
             git commit -a -m 'Update website'
             git push
 workflows:
