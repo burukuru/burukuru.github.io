@@ -44,6 +44,6 @@ THEME = 'Flex'
 SITETITLE = 'Cloud Magic'
 SITELOGO = 'https://thanhpham.cloud/upload/profile.jpg'
 MAIN_MENU = True
-MENUITEMS = (('Categories','categories.html'),
-	('Tags','tags.html'),
+MENUITEMS = (('Categories','https://thanhpham.cloud/categories.html'),
+        ('Tags','https://thanhpham.cloud/tags.html'),
 	)
