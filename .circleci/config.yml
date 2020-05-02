@@ -8,6 +8,7 @@ jobs:
   build-and-push:
     executor: python/default
     steps:
+      - add_ssh_keys
       - checkout
       - run: 
           command: |
