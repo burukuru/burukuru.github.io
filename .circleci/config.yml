@@ -13,7 +13,7 @@ jobs:
       - run: 
           command: |
             git clone https://github.com/burukuru/Flex
-            pipenv install pelican ghp-import
+            pipenv install pelican markdown ghp-import
             pipenv run pelican -s pelicanconf.py
             pipenv run ghp-import output -b master -p
 
