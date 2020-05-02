@@ -1,0 +1,26 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+
+jobs:
+  build-and-push:
+    executor: python/default
+    steps:
+      - checkout
+      - run: 
+          command: |
+            git clone https://github.com/burukuru/Flex
+            pipenv install pelican ghp-import
+            pipenv run pelican -s pelicanconf.py
+            ghp-import output -b gh-pages
+            git push git@github.com:burukuru/burukuru.github.io.git gh-pages:master
+workflows:
+  main:
+    jobs:
+      - build-and-push:
+        filters:
+          branches:
+            only:
+             - pelican
