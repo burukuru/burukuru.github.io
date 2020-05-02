@@ -13,10 +13,13 @@ jobs:
       - run: 
           command: |
             git clone https://github.com/burukuru/Flex
-            pipenv install pelican ghp-import
+            pipenv install pelican
             pipenv run pelican -s pelicanconf.py
-            pipenv run ghp-import output -b gh-pages
-            git push git@github.com:burukuru/burukuru.github.io.git gh-pages:master
+            git clone git@github.com:burukuru/burukuru.github.io.git master
+            cp -avr output/* master
+            cd master
+            git commit -a -m 'Update website'
+            git push
 workflows:
   main:
     jobs:
