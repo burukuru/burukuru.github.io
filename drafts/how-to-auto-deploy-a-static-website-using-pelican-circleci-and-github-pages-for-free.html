@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://thanhpham.cloud/theme/font-awesome/css/solid.css">
+
+
+
+
+
+
+
+<meta name="author" content="Thanh" />
+<meta name="description" content="In this post I will go through how you can: host a simple website (tech blog) for free using GitHub Pages auto deploy the site using CircleCI Technologies Pelican My website, a fairly simple tech blog, is created using a static site generator written in Python called Pelican. Pelican supports …" />
+<meta name="keywords" content="devops, cicd">
+
+<meta property="og:site_name" content="Cloud Magic"/>
+<meta property="og:title" content="How to auto deploy a static website using Pelican, CircleCI and GitHub Pages for free"/>
+<meta property="og:description" content="In this post I will go through how you can: host a simple website (tech blog) for free using GitHub Pages auto deploy the site using CircleCI Technologies Pelican My website, a fairly simple tech blog, is created using a static site generator written in Python called Pelican. Pelican supports …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://thanhpham.cloud/drafts/how-to-auto-deploy-a-static-website-using-pelican-circleci-and-github-pages-for-free.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-05-03 12:25:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://thanhpham.cloud/author/thanh.html">
+<meta property="article:section" content="DevOps"/>
+<meta property="article:tag" content="devops"/>
+<meta property="article:tag" content="cicd"/>
+<meta property="og:image" content="/upload/profile.jpg">
+
+  <title>Cloud Magic &ndash; How to auto deploy a static website using Pelican, CircleCI and GitHub Pages for free</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://thanhpham.cloud">
+        <img src="/upload/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
+      </a>
+      <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="https://thanhpham.cloud/pages/about.html#about">About</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+          <li>
+            <a  class="sc-github" href="https://github.com/burukuru" target="_blank">
+            <i class="fab fa-github">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-linkedin" href="https://www.linkedin.com/in/thanh-pham-cloud/" target="_blank">
+            <i class="fab fa-linkedin">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-medium" href="https://medium.com/@burukuru" target="_blank">
+            <i class="fab fa-medium">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-twitter" href="https://twitter.com/burukuru" target="_blank">
+            <i class="fab fa-twitter">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-flickr" href="https://flickr.com/burukuru" target="_blank">
+            <i class="fab fa-flickr">
+            </i>
+          </a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://thanhpham.cloud">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="how-to-auto-deploy-a-static-website-using-pelican-circleci-and-github-pages-for-free">How to auto deploy a static website using Pelican, CircleCI and GitHub Pages for free</h1>
+    <p>
+          Posted on Sun 03 May 2020 in <a href="https://thanhpham.cloud/category/devops.html">DevOps</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>In this post I will go through how you can:</p>
+<ul>
+<li>host a simple website (tech blog) for free using GitHub Pages</li>
+<li>auto deploy the site using CircleCI</li>
+</ul>
+<h1>Technologies</h1>
+<h2>Pelican</h2>
+<p>My website, a fairly simple tech blog, is created using a static site generator written in Python called <a href="https://github.com/getpelican/pelican/">Pelican</a>. Pelican supports Markdown, which is one of my favourite ways of writing documentation.</p>
+<p><strong>Why Pelican?</strong></p>
+<p>I like the simplicity of having a static site, it's:</p>
+<ul>
+<li>lightweight</li>
+<li>fast</li>
+<li>cacheable</li>
+</ul>
+<p>This post assumes you already have a basic site working with Pelican and ready to deploy; if not, head over to <a href="https://docs.getpelican.com/en/stable/quickstart.html">Pelican's quickstart</a>. Also you need a GitHub and CircleCI account.</p>
+<h2>GitHub Pages</h2>
+<p><a href="https://pages.github.com/">GitHub Pages</a> allows you to host a static website for free from a GitHub repository under the domain <em>yourusername</em>.github.io. As this is a user site, any content you push to the master branch of the repository called <em>yourusername</em>.github.io will be available at that domain.</p>
+<p>Note that if you are starting from scratch, you could look at using Jekyll which is supported out of the box.</p>
+<p><strong>Custom domain</strong></p>
+<p>GitHub also give you the ability to <a href="https://help.github.com/en/github/working-with-github-pages/configuring-a-custom-domain-for-your-github-pages-site">link a custom domain</a> and even configure HTTPS. All for free, what's not to like!  </p>
+<h2>CircleCI</h2>
+<p><a href="https://circleci.com/">CircleCI</a> is a very popular cloud-based CI product with a free tier for private projects. This gets even more generous for open-source projects: nearly $3000 per year's worth of credits. This is more than enough to deploy a static website.</p>
+<h1>Deployment</h1>
+<p>CircleCI has an excellent blog post on <a href="https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/">how to deploy documentation to GitHub Pages with CI</a>. I am going to expand on it with the specific use case of deploying a personal website using Pelican.</p>
+<h2>Repository and branches</h2>
+<p>First you will need to <a href="https://pages.github.com/">create a repository</a> for your GitHub Pages. As the website is deployed from the master branch of our repository, we will store all Pelican configuration files and source Markdown files in a branch called <code>pelican</code>.</p>
+<h2>SSH keys</h2>
+<p>Using SSH keys, instead of personal access tokens, will let you follow the principle of least privileges and only allow the CI jobs to push to this specific repository. We want to protect any higher value repositories you might have under your administration.</p>
+<p><a href="https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Generate ssh key</a>; the command from GitHub docs are usually a great guidance but in this case I had to tweak them as the OpenSSH default format has changed and CircleCI did not seem to support it.</p>
+<div class="highlight"><pre><span></span><code>ssh-keygen -m PEM -t rsa -b <span class="m">4096</span> -C <span class="s2">&quot;ci-build@example.com&quot;</span>
+</code></pre></div>
+
+
+<p>Upload the <a href="https://circleci.com/docs/2.0/add-ssh-key/">private SSH key to CircleCI</a>.<br>
+Then add the public key as a <a href="https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys">deploy key with read/write</a> to your GitHub project.</p>
+<h2>CircleCI config</h2>
+<p>First we need to generate site which is as easy as:</p>
+<div class="highlight"><pre><span></span><code>pipenv run pelican 
+</code></pre></div>
+
+
+<p>Then to trigger the site deploy, we'll use a great Python-based tool called <a href="https://github.com/davisp/ghp-import/">ghp-import</a> to push our changes to the master branch. From there, GitHub automation will publish the site.</p>
+<p>ghp-import even has a flag to write a CNAME file which I didn't use as I have already done it in Pelican before I noticed it. You should definitely use it though.</p>
+<p>Putting all the above together, your config should look roughly like the code below. Commit it to the <code>pelican</code> branch and push it.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2.1</span>
+
+<span class="nt">orbs</span><span class="p">:</span>
+  <span class="nt">python</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">circleci/python@0.2.1</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">build-and-push</span><span class="p">:</span>
+    <span class="nt">executor</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python/default</span>
+    <span class="nt">steps</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">add_ssh_keys</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">checkout</span>
+      <span class="p p-Indicator">-</span> <span class="nt">run</span><span class="p">:</span> 
+          <span class="nt">command</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+            <span class="no"># Get the theme</span>
+            <span class="no">git clone https://github.com/burukuru/Flex</span>
+            <span class="no"># Install dependencies in new pip environment</span>
+            <span class="no">pipenv install pelican markdown ghp-import</span>
+            <span class="no"># Generate the site</span>
+            <span class="no">pipenv run pelican</span>
+            <span class="no"># Configure the Git user so the commit messages look neat</span>
+            <span class="no">git config user.email &quot;ci-build@thanhpham.cloud&quot;</span>
+            <span class="no">git config user.name &quot;ci-build&quot;</span>
+            <span class="no"># Push the content of the output directory to the master branch</span>
+            <span class="no">pipenv run ghp-import output -m &quot;[skip ci] Update website&quot; -b master -p</span>
+
+<span class="nt">workflows</span><span class="p">:</span>
+  <span class="nt">main</span><span class="p">:</span>
+    <span class="nt">jobs</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">build-and-push</span><span class="p">:</span>
+        <span class="nt">filters</span><span class="p">:</span>
+          <span class="nt">branches</span><span class="p">:</span>
+            <span class="nt">only</span><span class="p">:</span>
+             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pelican</span>
+</code></pre></div>
+
+
+<p>We use <code>[skip ci]</code> in the commit message so that new website updates don't trigger a build in CircleCI.<br>
+The GitHub automation to publish the website will still work.</p>
+<p>Lastly you need to <a href="https://circleci.com/blog/setting-up-continuous-integration-with-github/">set up your new repository with CircleCI</a> and in your CircleCI dashboard you should see a new job generating your website and pushing it out.</p>
+<p>Now every time you push a change to the <code>pelican</code> branch, your website should be automatically updated within minutes. Enjoy your automation and get writing!</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://thanhpham.cloud/tag/devops.html">devops</a>
+      <a href="https://thanhpham.cloud/tag/cicd.html">cicd</a>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Cloud Magic ",
+  "url" : "https://thanhpham.cloud",
+  "image": "/upload/profile.jpg",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
