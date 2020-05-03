@@ -10,12 +10,15 @@ STATIC_PATHS = ['upload']
 ARTICLES_PATHS = ['upload']
 
 EXTRA_PATH_METADATA = {
-    'upload/CNAME': {'path': 'CNAME'},
-    }
+        'upload/CNAME': {'path': 'CNAME'},
+        }
 
 TIMEZONE = 'Europe/London'
 
 DEFAULT_LANG = u'en'
+DEFAULT_METADATA = {
+        'status': 'draft',
+        }
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -28,12 +31,13 @@ AUTHOR_FEED_RSS = None
 LINKS = ()
 
 # Social
-SOCIAL = (('github', 'https://github.com/burukuru'),
-	('linkedin', 'https://www.linkedin.com/in/thanh-pham-cloud/'),
-	('medium', 'https://medium.com/@burukuru'),
-	('twitter', 'https://twitter.com/burukuru'),
-	('flickr', 'https://flickr.com/burukuru'),
-	)
+SOCIAL = (
+        ('github', 'https://github.com/burukuru'),
+        ('linkedin', 'https://www.linkedin.com/in/thanh-pham-cloud/'),
+        ('medium', 'https://medium.com/@burukuru'),
+        ('twitter', 'https://twitter.com/burukuru'),
+        ('flickr', 'https://flickr.com/burukuru'),
+        )
 
 DEFAULT_PAGINATION = 10
 
@@ -44,6 +48,7 @@ THEME = 'Flex'
 SITETITLE = 'Cloud Magic'
 SITELOGO = 'https://thanhpham.cloud/upload/profile.jpg'
 MAIN_MENU = True
-MENUITEMS = (('Categories','https://thanhpham.cloud/categories.html'),
-        ('Tags','https://thanhpham.cloud/tags.html'),
-	)
+MENUITEMS = (
+        ('Categories', 'https://thanhpham.cloud/categories.html'),
+        ('Tags', 'https://thanhpham.cloud/tags.html'),
+        )
