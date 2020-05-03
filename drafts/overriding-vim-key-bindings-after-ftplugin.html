@@ -118,13 +118,12 @@
   <div>
     <p>I recently started using <a href="https://github.com/hashivim/vim-terraform">vim-terraform</a>, it checks the syntax on save and keeps the config neat - great stuff! One problem I had was it remapped '<Space>' to 'za' which folds/unfolds functions.
 This was rather annoying as I use <Space> for bringing up the <a href="https://github.com/jlanzarotta/bufexplorer">buffer list</a>.</p>
-<p>In order to unmap/remap this, I had to create <code>~/.vim/after/ftplugin/terraform.vim</code> with this content:</p>
-<div class="highlight"><pre><span></span><code><span class="err">nnoremap &lt;buffer&gt; &lt;Space&gt; :BufExplorerHor&lt;CR&gt;</span>
-</code></pre></div>
-
-
-<p>This is because the plugin uses an <code>after-directory</code> which is only run after the file type (ftplugin) is detected.
-Creating your own <code>after-directory</code> will override this.</p>
+<p>In order to unmap/remap this, I had to create <code>~/.vim/after/ftplugin/terraform.vim</code> with this content:
+```
+nnoremap <buffer> <Space> :BufExplorerHor<CR></p>
+<p><code>``
+This is because the plugin uses an</code>after-directory<code>which is only run after the file type (ftplugin) is detected.
+Creating your own</code>after-directory` will override this.</p>
   </div>
   <div class="tag-cloud">
     <p>

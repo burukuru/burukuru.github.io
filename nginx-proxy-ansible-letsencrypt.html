@@ -122,7 +122,7 @@
     <p>Say you're running an nginx proxy and need to set up multiple domains with different backends.</p>
 <p>Using: https://github.com/thefinn93/ansible-letsencrypt/</p>
 <p>proxy.yml:</p>
-<div class="highlight"><pre><span></span><code><span class="err">    :::yaml</span>
+<div class="codehilite"><pre><span></span><code><span class="err">    :::yaml</span>
 <span class="err">    - hosts: proxy</span>
 <span class="err">      vars:</span>
 <span class="err">        letsencrypt_webroot_path: /var/www/letsencrypt/</span>
@@ -140,7 +140,7 @@
 
 <p>In your nginx role:</p>
 <p>nginx.conf.j2:</p>
-<div class="highlight"><pre><span></span><code><span class="x">    :::jinja</span>
+<div class="codehilite"><pre><span></span><code><span class="x">    :::jinja</span>
 <span class="x">    http {</span>
 <span class="x">            ...</span>
 <span class="x">                    ssl_certificate /etc/letsencrypt/live/</span><span class="cp">{{</span> <span class="nv">letsencrypt_cert_domains</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="cp">}}</span><span class="x">/fullchain.pem;</span>
@@ -151,7 +151,7 @@
 
 
 <p>site.conf.j2:</p>
-<div class="highlight"><pre><span></span><code>    <span class="p">:::</span><span class="n">jinja</span>
+<div class="codehilite"><pre><span></span><code>    <span class="p">:::</span><span class="n">jinja</span>
     <span class="n">server</span> <span class="err">{</span>
 
             <span class="k">listen</span> <span class="mi">80</span><span class="p">;</span>

@@ -116,16 +116,16 @@
   <div>
     <p>S3 replication</p>
 <p>Command: s3cmd --access_key ACCESS --secret_key SECRET -s sync -r
---delete-removed s3://source/ s3://destination/<br>
+--delete-removed s3://source/ s3://destination/<br />
 Broken: aws s3 sync --delete --source-region eu-west-1 s3://source
 --region eu-central-1 s3://destination</p>
-<div class="highlight"><pre><span></span><code><span class="err">delete failed: s3://thanh-s3-frankfurt/blah A client error (InvalidRequest) occurred when calling the DeleteObject operation: You are attempting to operate on a bucket in a region that requires Signature Version 4. You can fix this issue by explicitly providing the correct region location using the --region argument, the AWS_DEFAULT_REGION environment variable, or the region variable in the AWS CLI configuration file. You can get the bucket&#39;s location by running &quot;aws s3api get-bucket-location --bucket BUCKET&quot;.</span>
+<div class="codehilite"><pre><span></span><code><span class="err">delete failed: s3://thanh-s3-frankfurt/blah A client error (InvalidRequest) occurred when calling the DeleteObject operation: You are attempting to operate on a bucket in a region that requires Signature Version 4. You can fix this issue by explicitly providing the correct region location using the --region argument, the AWS_DEFAULT_REGION environment variable, or the region variable in the AWS CLI configuration file. You can get the bucket&#39;s location by running &quot;aws s3api get-bucket-location --bucket BUCKET&quot;.</span>
 </code></pre></div>
 
 
-<p>Policies: ###<br>
+<p>Policies: ###<br />
 Basic:
-http://stackoverflow.com/questions/5194552/is-it-possible-to-copy-all-files-from-one-s3-bucket-to-another-with-s3cmd<br>
+http://stackoverflow.com/questions/5194552/is-it-possible-to-copy-all-files-from-one-s3-bucket-to-another-with-s3cmd<br />
 Verbose, cross-account:
 http://www.wekanban.com/amazon-web-services-s3-part-3-sharing-and-syncing-bucket-between-accounts/</p>
 <p>https://confluence.everycity.co.uk/pages/viewpage.action?pageId=5439585</p>

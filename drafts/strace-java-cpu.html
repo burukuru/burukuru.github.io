@@ -24,12 +24,12 @@
 
 
 <meta name="author" content="Thanh" />
-<meta name="description" content="strace output from process using 100% cpu root@tomcat1-prd-moogi:/var/log/tomcat8# strace -c -p 12194 strace: Process 12194 attached ^Cstrace: Process 12194 detached % time seconds usecs/call calls errors syscall ------ ----------- ----------- --------- --------- ---------------- 100.00 16.934431 8596 1970 165 futex 0.00 0.000010 0 785 sched_yield 0.00 …" />
+<meta name="description" content="strace output from process using 100% cpu ``` root@tomcat1-prd-moogi:/var/log/tomcat8# strace -c -p 12194 strace: Process 12194 attached ^Cstrace: Process 12194 detached % time seconds usecs/call calls errors syscall 100.00 16.934431 8596 1970 165 futex 0.00 0.000010 0 785 sched_yield 0.00 0.000000 …" />
 <meta name="keywords" content="strace, cpu, java, tomcat, memory">
 
 <meta property="og:site_name" content="Cloud Magic"/>
 <meta property="og:title" content="Using strace to debug high CPU on java"/>
-<meta property="og:description" content="strace output from process using 100% cpu root@tomcat1-prd-moogi:/var/log/tomcat8# strace -c -p 12194 strace: Process 12194 attached ^Cstrace: Process 12194 detached % time seconds usecs/call calls errors syscall ------ ----------- ----------- --------- --------- ---------------- 100.00 16.934431 8596 1970 165 futex 0.00 0.000010 0 785 sched_yield 0.00 …"/>
+<meta property="og:description" content="strace output from process using 100% cpu ``` root@tomcat1-prd-moogi:/var/log/tomcat8# strace -c -p 12194 strace: Process 12194 attached ^Cstrace: Process 12194 detached % time seconds usecs/call calls errors syscall 100.00 16.934431 8596 1970 165 futex 0.00 0.000010 0 785 sched_yield 0.00 0.000000 …"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://thanhpham.cloud/drafts/strace-java-cpu.html"/>
 <meta property="og:type" content="article"/>
@@ -120,47 +120,45 @@
 
   <div>
     <p>strace output from process using 100% cpu</p>
-<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="p">@</span><span class="n">tomcat1</span><span class="o">-</span><span class="n">prd</span><span class="o">-</span><span class="n">moogi</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">tomcat8</span># <span class="n">strace</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">p</span> <span class="mi">12194</span>
-<span class="n">strace</span><span class="p">:</span> <span class="n">Process</span> <span class="mi">12194</span> <span class="n">attached</span>
-^<span class="n">Cstrace</span><span class="p">:</span> <span class="n">Process</span> <span class="mi">12194</span> <span class="n">detached</span>
-<span class="c">% time     seconds  usecs/call     calls    errors syscall</span>
-<span class="o">------</span> <span class="o">-----------</span> <span class="o">-----------</span> <span class="o">---------</span> <span class="o">---------</span> <span class="o">----------------</span>
-<span class="mf">100.00</span>   <span class="mf">16.934431</span>        <span class="mi">8596</span>      <span class="mi">1970</span>       <span class="mi">165</span> <span class="n">futex</span>
-  <span class="mf">0.00</span>    <span class="mf">0.000010</span>           <span class="mi">0</span>       <span class="mi">785</span>           <span class="n">sched_yield</span>
-  <span class="mf">0.00</span>    <span class="mf">0.000000</span>           <span class="mi">0</span>       <span class="mi">779</span>           <span class="n">mprotect</span>
-  <span class="mf">0.00</span>    <span class="mf">0.000000</span>           <span class="mi">0</span>         <span class="mi">4</span>           <span class="n">madvise</span>
-<span class="o">------</span> <span class="o">-----------</span> <span class="o">-----------</span> <span class="o">---------</span> <span class="o">---------</span> <span class="o">----------------</span>
-<span class="mf">100.00</span>   <span class="mf">16.934441</span>                  <span class="mi">3538</span>       <span class="mi">165</span> <span class="n">total</span>
-</code></pre></div>
-
-
+<p>```
+root@tomcat1-prd-moogi:/var/log/tomcat8# strace -c -p 12194
+strace: Process 12194 attached
+^Cstrace: Process 12194 detached
+% time     seconds  usecs/call     calls    errors syscall</p>
+<hr />
+<p>100.00   16.934431        8596      1970       165 futex
+  0.00    0.000010           0       785           sched_yield
+  0.00    0.000000           0       779           mprotect
+  0.00    0.000000           0         4           madvise</p>
+<hr />
+<p>100.00   16.934441                  3538       165 total
+```</p>
 <ul>
 <li>Trigerring a thread dump with kill -3 also showed a lot of waiting on locks.</li>
 <li>Both madvise and mprotect are system calls relating to memory.</li>
 <li>You can also see futex has quite a high error rate.</li>
 </ul>
 <p>Example output from a healthy process after adding more memory:</p>
-<div class="highlight"><pre><span></span><code><span class="n">root</span><span class="p">@</span><span class="n">tomcat1</span><span class="o">-</span><span class="n">prd</span><span class="o">-</span><span class="n">moogi</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">tomcat8</span># <span class="n">strace</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">p</span> <span class="mi">12023</span>
-<span class="n">strace</span><span class="p">:</span> <span class="n">Process</span> <span class="mi">12023</span> <span class="n">attached</span>
-^<span class="n">Cstrace</span><span class="p">:</span> <span class="n">Process</span> <span class="mi">12023</span> <span class="n">detached</span>
-<span class="c">% time     seconds  usecs/call     calls    errors syscall</span>
-<span class="o">------</span> <span class="o">-----------</span> <span class="o">-----------</span> <span class="o">---------</span> <span class="o">---------</span> <span class="o">----------------</span>
- <span class="mf">55.85</span>    <span class="mf">0.172000</span>        <span class="mi">2293</span>        <span class="mi">75</span>         <span class="mi">4</span> <span class="n">futex</span>
- <span class="mf">34.25</span>    <span class="mf">0.105462</span>           <span class="mi">0</span>   <span class="mi">1548087</span>    <span class="mi">147918</span> <span class="n">lstat</span>
-  <span class="mf">9.09</span>    <span class="mf">0.028000</span>       <span class="mi">28000</span>         <span class="mi">1</span>         <span class="mi">1</span> <span class="n">restart_syscall</span>
-  <span class="mf">0.81</span>    <span class="mf">0.002492</span>           <span class="mi">0</span>     <span class="mi">32880</span>     <span class="mi">30291</span> <span class="n">stat</span>
-  <span class="mf">0.00</span>    <span class="mf">0.000000</span>           <span class="mi">0</span>         <span class="mi">3</span>           <span class="n">write</span>
-  <span class="mf">0.00</span>    <span class="mf">0.000000</span>           <span class="mi">0</span>         <span class="mi">9</span>           <span class="n">open</span>
-  <span class="mf">0.00</span>    <span class="mf">0.000000</span>           <span class="mi">0</span>         <span class="mi">9</span>           <span class="n">close</span>
-  <span class="mf">0.00</span>    <span class="mf">0.000000</span>           <span class="mi">0</span>         <span class="mi">9</span>           <span class="n">fstat</span>
-  <span class="mf">0.00</span>    <span class="mf">0.000000</span>           <span class="mi">0</span>         <span class="mi">2</span>           <span class="n">rt_sigreturn</span>
-  <span class="mf">0.00</span>    <span class="mf">0.000000</span>           <span class="mi">0</span>       <span class="mi">336</span>           <span class="n">access</span>
-  <span class="mf">0.00</span>    <span class="mf">0.000000</span>           <span class="mi">0</span>        <span class="mi">18</span>           <span class="n">getdents</span>
-<span class="o">------</span> <span class="o">-----------</span> <span class="o">-----------</span> <span class="o">---------</span> <span class="o">---------</span> <span class="o">----------------</span>
-<span class="mf">100.00</span>    <span class="mf">0.307954</span>               <span class="mi">1581429</span>    <span class="mi">178214</span> <span class="n">total</span>
-</code></pre></div>
-
-
+<p>```
+root@tomcat1-prd-moogi:/var/log/tomcat8# strace -c -p 12023
+strace: Process 12023 attached
+^Cstrace: Process 12023 detached
+% time     seconds  usecs/call     calls    errors syscall</p>
+<hr />
+<p>55.85    0.172000        2293        75         4 futex
+ 34.25    0.105462           0   1548087    147918 lstat
+  9.09    0.028000       28000         1         1 restart_syscall
+  0.81    0.002492           0     32880     30291 stat
+  0.00    0.000000           0         3           write
+  0.00    0.000000           0         9           open
+  0.00    0.000000           0         9           close
+  0.00    0.000000           0         9           fstat
+  0.00    0.000000           0         2           rt_sigreturn
+  0.00    0.000000           0       336           access
+  0.00    0.000000           0        18           getdents</p>
+<hr />
+<p>100.00    0.307954               1581429    178214 total
+```</p>
 <p>Note:</p>
 <ul>
 <li>no madvise/mprotect</li>

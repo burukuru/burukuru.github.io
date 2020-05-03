@@ -115,23 +115,23 @@
 
   <div>
     <p>2015/03/02 14:44:38 [error] 7536#0: accept() failed (130: Software
-caused connection abort)<br>
+caused connection abort)<br />
 2015/03/02 14:44:46 [error] 7536#0: accept() failed (130: Software
-caused connection abort)<br>
+caused connection abort)<br />
 2015/03/02 14:44:50 [error] 7536#0: accept() failed (130: Software
 caused connection abort)</p>
-<p>haproxy site checks<br>
+<p>haproxy site checks<br />
 the issue is haproxy checks against the web server. you can either
 specify a full check
 (http://cbonte.github.io/haproxy-dconv/configuration-1.5.html#check) or
-create a separate dummy vhost to check (like i did for unbiased)<br>
+create a separate dummy vhost to check (like i did for unbiased)<br />
 in the first instance, the requests will appear in the access_log, in
 the second instance you can do a log ignore</p>
-<p>server {<br>
-server_name health-check;<br>
+<p>server {<br />
+server_name health-check;<br />
 root /var/www/health-check;</p>
-<p>access_log /dev/null;<br>
-error_log /dev/null;<br>
+<p>access_log /dev/null;<br />
+error_log /dev/null;<br />
 }</p>
   </div>
   <div class="tag-cloud">
