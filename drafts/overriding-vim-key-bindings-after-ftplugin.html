@@ -39,7 +39,7 @@
 <meta property="article:section" content="Linux"/>
 <meta property="article:tag" content="vim"/>
 <meta property="article:tag" content="terraform"/>
-<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">
+<meta property="og:image" content="https://thanhpham.cloud/upload/profile.jpg">
 
   <title>Cloud Magic &ndash; Overriding Vim key bindings after ftplugin</title>
 
@@ -48,7 +48,7 @@
   <aside>
     <div>
       <a href="https://thanhpham.cloud">
-        <img src="https://thanhpham.cloud/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
+        <img src="https://thanhpham.cloud/upload/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
       </a>
       <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
 
@@ -119,8 +119,8 @@
     <p>I recently started using <a href="https://github.com/hashivim/vim-terraform">vim-terraform</a>, it checks the syntax on save and keeps the config neat - great stuff! One problem I had was it remapped '<Space>' to 'za' which folds/unfolds functions.
 This was rather annoying as I use <Space> for bringing up the <a href="https://github.com/jlanzarotta/bufexplorer">buffer list</a>.</p>
 <p>In order to unmap/remap this, I had to create <code>~/.vim/after/ftplugin/terraform.vim</code> with this content:</p>
-<div class="highlight"><pre><span></span>nnoremap &lt;buffer&gt; &lt;Space&gt; :BufExplorerHor&lt;CR&gt;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">nnoremap &lt;buffer&gt; &lt;Space&gt; :BufExplorerHor&lt;CR&gt;</span>
+</code></pre></div>
 
 
 <p>This is because the plugin uses an <code>after-directory</code> which is only run after the file type (ftplugin) is detected.
@@ -154,7 +154,7 @@ Creating your own <code>after-directory</code> will override this.</p>
   "@type" : "Blog",
   "name": " Cloud Magic ",
   "url" : "https://thanhpham.cloud",
-  "image": "https://thanhpham.cloud/profile.jpg",
+  "image": "https://thanhpham.cloud/upload/profile.jpg",
   "description": ""
 }
 </script>

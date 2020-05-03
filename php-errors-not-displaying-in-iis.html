@@ -40,7 +40,7 @@
 <meta property="article:tag" content="errors"/>
 <meta property="article:tag" content="iis"/>
 <meta property="article:tag" content="php"/>
-<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">
+<meta property="og:image" content="https://thanhpham.cloud/upload/profile.jpg">
 
   <title>Cloud Magic &ndash; PHP errors not displaying in IIS</title>
 
@@ -49,7 +49,7 @@
   <aside>
     <div>
       <a href="https://thanhpham.cloud">
-        <img src="https://thanhpham.cloud/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
+        <img src="https://thanhpham.cloud/upload/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
       </a>
       <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
 
@@ -133,8 +133,8 @@ php.ini file; later on it turned out that error messages option was not
 set  but it's supposedly on by default but errors just decided not to
 show.</p>
 <p>Cutting to the chase, I dropped the following into the PHP file:</p>
-<div class="highlight"><pre><span></span>ini_set(&#39;display_errors&#39;,true);
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">ini_set(&#39;display_errors&#39;,true);</span>
+</code></pre></div>
 
 
 <p>This uncovered  a plugin was installed twice and WordPress was having
@@ -172,7 +172,7 @@ for pointing that out!</p>
   "@type" : "Blog",
   "name": " Cloud Magic ",
   "url" : "https://thanhpham.cloud",
-  "image": "https://thanhpham.cloud/profile.jpg",
+  "image": "https://thanhpham.cloud/upload/profile.jpg",
   "description": ""
 }
 </script>

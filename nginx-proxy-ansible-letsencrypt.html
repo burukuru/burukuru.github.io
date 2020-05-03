@@ -42,7 +42,7 @@
 <meta property="article:tag" content="ansible"/>
 <meta property="article:tag" content="letsencrypt"/>
 <meta property="article:tag" content="ssl"/>
-<meta property="og:image" content="https://thanhpham.cloud/profile.jpg">
+<meta property="og:image" content="https://thanhpham.cloud/upload/profile.jpg">
 
   <title>Cloud Magic &ndash; Nginx proxy with Ansible and letsencrypt for multiple domains</title>
 
@@ -51,7 +51,7 @@
   <aside>
     <div>
       <a href="https://thanhpham.cloud">
-        <img src="https://thanhpham.cloud/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
+        <img src="https://thanhpham.cloud/upload/profile.jpg" alt="Cloud Magic" title="Cloud Magic">
       </a>
       <h1><a href="https://thanhpham.cloud">Cloud Magic</a></h1>
 
@@ -122,46 +122,46 @@
     <p>Say you're running an nginx proxy and need to set up multiple domains with different backends.</p>
 <p>Using: https://github.com/thefinn93/ansible-letsencrypt/</p>
 <p>proxy.yml:</p>
-<div class="highlight"><pre><span></span>- hosts: proxy
-  vars:
-    letsencrypt_webroot_path: /var/www/letsencrypt/
-    letsencrypt_email: foo@bar.com
-    letsencrypt_cert_domains:
-      - site.com
-      - www.site.com
-      - othersite.org
-    letsencrypt_renewal_command_args: &#39;--renew-hook &quot;systemctl restart nginx&quot;&#39;
-  roles:
-    - { role: ansible-letsencrypt, tags: letsencrypt }
-    - { role: nginx, tags: nginx }
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">- hosts: proxy</span>
+<span class="err">  vars:</span>
+<span class="err">    letsencrypt_webroot_path: /var/www/letsencrypt/</span>
+<span class="err">    letsencrypt_email: foo@bar.com</span>
+<span class="err">    letsencrypt_cert_domains:</span>
+<span class="err">      - site.com</span>
+<span class="err">      - www.site.com</span>
+<span class="err">      - othersite.org</span>
+<span class="err">    letsencrypt_renewal_command_args: &#39;--renew-hook &quot;systemctl restart nginx&quot;&#39;</span>
+<span class="err">  roles:</span>
+<span class="err">    - { role: ansible-letsencrypt, tags: letsencrypt }</span>
+<span class="err">    - { role: nginx, tags: nginx }</span>
+</code></pre></div>
 
 
 <p>In your nginx role:</p>
 <p>nginx.conf.j2:</p>
-<div class="highlight"><pre><span></span><span class="x">http {</span>
+<div class="highlight"><pre><span></span><code><span class="x">http {</span>
 <span class="x">...</span>
 <span class="x">    ssl_certificate /etc/letsencrypt/live/</span><span class="cp">{{</span> <span class="nv">letsencrypt_cert_domains</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="cp">}}</span><span class="x">/fullchain.pem;</span>
 <span class="x">    ssl_certificate_key /etc/letsencrypt/live/</span><span class="cp">{{</span> <span class="nv">letsencrypt_cert_domains</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="cp">}}</span><span class="x">/privkey.pem;</span>
 <span class="x">...</span>
 <span class="x">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>site.conf.j2:</p>
-<div class="highlight"><pre><span></span>server {
+<div class="highlight"><pre><span></span><code><span class="n">server</span> <span class="err">{</span>
 
-  listen 80;
-  listen 443;
+  <span class="k">listen</span> <span class="mi">80</span><span class="p">;</span>
+  <span class="k">listen</span> <span class="mi">443</span><span class="p">;</span>
 
-  server_name site.com;
+  <span class="k">server_name</span> <span class="n">site</span><span class="p">.</span><span class="n">com</span><span class="p">;</span>
 
-  location /.well-known/acme-challenge {
-    add_header  X-Robots-Tag &quot;noindex, nofollow, nosnippet, noarchive&quot;;
-    root /var/www/letsencrypt/;
-  }   
-}
-</pre></div>
+  <span class="k">location</span> <span class="o">/</span><span class="p">.</span><span class="n">well</span><span class="o">-</span><span class="n">known</span><span class="o">/</span><span class="n">acme</span><span class="o">-</span><span class="n">challenge</span> <span class="err">{</span>
+    <span class="n">add_header</span>  <span class="n">X</span><span class="o">-</span><span class="n">Robots</span><span class="o">-</span><span class="n">Tag</span> <span class="ss">&quot;noindex, nofollow, nosnippet, noarchive&quot;</span><span class="p">;</span>
+    <span class="n">root</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="p">;</span>
+  <span class="err">}</span>   
+<span class="err">}</span>
+</code></pre></div>
   </div>
   <div class="tag-cloud">
     <p>
@@ -194,7 +194,7 @@
   "@type" : "Blog",
   "name": " Cloud Magic ",
   "url" : "https://thanhpham.cloud",
-  "image": "https://thanhpham.cloud/profile.jpg",
+  "image": "https://thanhpham.cloud/upload/profile.jpg",
   "description": ""
 }
 </script>
