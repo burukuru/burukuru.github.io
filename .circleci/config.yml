@@ -15,7 +15,9 @@ jobs:
             git clone https://github.com/burukuru/Flex
             pipenv install pelican markdown ghp-import
             pipenv run pelican -s pelicanconf.py
-            pipenv run ghp-import output -b master -p
+            git config user.email "ci-build@thanhpham.cloud"
+            git config user.name "ci-build"
+            pipenv run ghp-import output -m "[skip ci] Update website" -b master -p
 
 workflows:
   main:
