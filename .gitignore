@@ -1,0 +1,5 @@
+Pipfile
+# Ignore themes folder
+Flex
+# Ignore pelican generated output
+output
