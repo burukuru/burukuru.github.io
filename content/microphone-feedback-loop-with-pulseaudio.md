@@ -2,7 +2,7 @@ Title: Microphone feedback loop with PulseAudio
 Date: 2015-10-06 14:33
 Author: Thanh
 Category: Linux
-Tags: alsa, arch, archlinux, pulseaudio
+Tags: alsa, archlinux, pulseaudio
 Slug: microphone-feedback-loop-with-pulseaudio
 Status: published
 

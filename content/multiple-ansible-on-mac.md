@@ -2,7 +2,7 @@ Title: Multiple Ansible versions on Mac
 Date: 2016-03-03 00:20
 Author: Thanh
 Category: SysAdmin
-Tags: ansible, testing, debug
+Tags: ansible, debugging
 Slug: multiple-ansible-versions-on-mac
 Status: published
 

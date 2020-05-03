@@ -2,7 +2,7 @@ Title: Solr issues with Drupal
 Date: 2015-02-24 16:35
 Author: Thanh
 Category: SysAdmin
-Tags: drupal, search, smartos, solr, tomcat, truss
+Tags: drupal, smartos, solr, tomcat, truss
 Slug: solr-issues-with-drupal
 Status: published
 

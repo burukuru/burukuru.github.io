@@ -2,7 +2,7 @@ Title: SMTP authentication in Exim
 Date: 2015-01-28 01:56
 Author: Thanh
 Category: Linux
-Tags: auth, authentication, exim, exim4, gmail, login, plain, sha1, smtp, smtpauth
+Tags: exim
 Slug: smtp-authentication-in-exim
 Status: published
 

@@ -2,7 +2,7 @@ Title: Updating and resetting Raritan Dominion PX PDUs
 Date: 2012-05-29 13:14
 Author: Thanh
 Category: SysAdmin
-Tags: pdu, raritan, reset
+Tags: hardware
 Slug: updating-and-resetting-raritan-dominion-px-pdus
 Status: published
 

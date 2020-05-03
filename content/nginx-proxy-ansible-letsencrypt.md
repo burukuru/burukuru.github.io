@@ -2,7 +2,7 @@ Title: Nginx proxy with Ansible and letsencrypt for multiple domains
 Date: 2016-08-25 12:38
 Author: Thanh
 Category: SysAdmin
-Tags: nginx, proxy, ansible, letsencrypt, ssl
+Tags: nginx, ansible, letsencrypt
 Slug: nginx-proxy-ansible-letsencrypt
 Status: published
 

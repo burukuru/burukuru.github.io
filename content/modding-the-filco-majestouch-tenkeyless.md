@@ -2,7 +2,7 @@ Title: Modding the Filco Majestouch Tenkeyless
 Date: 2012-05-16 22:47
 Author: Thanh
 Category: Misc
-Tags: cherrymx, filco, keyboard, majestouch, modding, tenkeyless
+Tags: mechanicalkeyboards
 Slug: modding-the-filco-majestouch-tenkeyless
 Status: published
 

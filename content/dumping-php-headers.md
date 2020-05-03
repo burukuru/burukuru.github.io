@@ -2,7 +2,7 @@ Title: Dumping PHP headers
 Date: 2016-03-07 16:43
 Author: Thanh
 Category: SysAdmin
-Tags: php, testing, debug
+Tags: php, debugging
 Slug: dumping-php-headers
 Status: published
 

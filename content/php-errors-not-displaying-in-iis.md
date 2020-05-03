@@ -2,7 +2,7 @@ Title: PHP errors not displaying in IIS
 Date: 2012-05-18 19:32
 Author: Thanh
 Category: SysAdmin
-Tags: errors, iis, php
+Tags: iis, php
 Slug: php-errors-not-displaying-in-iis
 Status: published
 

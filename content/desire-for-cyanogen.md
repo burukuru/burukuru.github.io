@@ -2,7 +2,7 @@ Title: Desire for Cyanogen
 Date: 2012-03-22 10:44
 Author: Thanh
 Category: misc
-Tags: cyanogen, desire, htc
+Tags: android
 Slug: desire-for-cyanogen
 Status: published
 
