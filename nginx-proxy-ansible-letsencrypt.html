@@ -24,12 +24,12 @@
 
 
 <meta name="author" content="Thanh" />
-<meta name="description" content="Say you&#39;re running an nginx proxy and need to set up multiple domains with different backends. Using: https://github.com/thefinn93/ansible-letsencrypt/ proxy.yml: :::yaml - hosts: proxy vars: letsencrypt_webroot_path: /var/www/letsencrypt/ letsencrypt_email: foo@bar.com letsencrypt_cert_domains: - site.com - www.site.com - othersite.org letsencrypt_renewal_command_args: &#39;--renew-hook &#34;systemctl restart nginx&#34;&#39; roles …" />
+<meta name="description" content="Say you&#39;re running an nginx proxy and need to set up multiple domains with different backends. Using: https://github.com/thefinn93/ansible-letsencrypt/ proxy.yml: - hosts: proxy vars: letsencrypt_webroot_path: /var/www/letsencrypt/ letsencrypt_email: foo@bar.com letsencrypt_cert_domains: - site.com - www.site.com - othersite.org letsencrypt_renewal_command_args: &#39;--renew-hook &#34;systemctl restart nginx&#34;&#39; roles: - { role …" />
 <meta name="keywords" content="nginx, proxy, ansible, letsencrypt, ssl">
 
 <meta property="og:site_name" content="Cloud Magic"/>
 <meta property="og:title" content="Nginx proxy with Ansible and letsencrypt for multiple domains"/>
-<meta property="og:description" content="Say you&#39;re running an nginx proxy and need to set up multiple domains with different backends. Using: https://github.com/thefinn93/ansible-letsencrypt/ proxy.yml: :::yaml - hosts: proxy vars: letsencrypt_webroot_path: /var/www/letsencrypt/ letsencrypt_email: foo@bar.com letsencrypt_cert_domains: - site.com - www.site.com - othersite.org letsencrypt_renewal_command_args: &#39;--renew-hook &#34;systemctl restart nginx&#34;&#39; roles …"/>
+<meta property="og:description" content="Say you&#39;re running an nginx proxy and need to set up multiple domains with different backends. Using: https://github.com/thefinn93/ansible-letsencrypt/ proxy.yml: - hosts: proxy vars: letsencrypt_webroot_path: /var/www/letsencrypt/ letsencrypt_email: foo@bar.com letsencrypt_cert_domains: - site.com - www.site.com - othersite.org letsencrypt_renewal_command_args: &#39;--renew-hook &#34;systemctl restart nginx&#34;&#39; roles: - { role …"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://thanhpham.cloud/nginx-proxy-ansible-letsencrypt.html"/>
 <meta property="og:type" content="article"/>
@@ -122,48 +122,45 @@
     <p>Say you're running an nginx proxy and need to set up multiple domains with different backends.</p>
 <p>Using: https://github.com/thefinn93/ansible-letsencrypt/</p>
 <p>proxy.yml:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">    :::yaml</span>
-<span class="err">    - hosts: proxy</span>
-<span class="err">      vars:</span>
-<span class="err">        letsencrypt_webroot_path: /var/www/letsencrypt/</span>
-<span class="err">        letsencrypt_email: foo@bar.com</span>
-<span class="err">        letsencrypt_cert_domains:</span>
-<span class="err">          - site.com</span>
-<span class="err">          - www.site.com</span>
-<span class="err">          - othersite.org</span>
-<span class="err">        letsencrypt_renewal_command_args: &#39;--renew-hook &quot;systemctl restart nginx&quot;&#39;</span>
-<span class="err">      roles:</span>
-<span class="err">        - { role: ansible-letsencrypt, tags: letsencrypt }</span>
-<span class="err">        - { role: nginx, tags: nginx }</span>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">hosts</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">proxy</span>
+  <span class="nt">vars</span><span class="p">:</span>
+    <span class="nt">letsencrypt_webroot_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/letsencrypt/</span>
+    <span class="nt">letsencrypt_email</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">foo@bar.com</span>
+    <span class="nt">letsencrypt_cert_domains</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">site.com</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">www.site.com</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">othersite.org</span>
+    <span class="nt">letsencrypt_renewal_command_args</span><span class="p">:</span> <span class="s">&#39;--renew-hook</span><span class="nv"> </span><span class="s">&quot;systemctl</span><span class="nv"> </span><span class="s">restart</span><span class="nv"> </span><span class="s">nginx&quot;&#39;</span>
+  <span class="nt">roles</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt"> role</span><span class="p">:</span> <span class="nv">ansible-letsencrypt</span><span class="p p-Indicator">,</span><span class="nt"> tags</span><span class="p">:</span> <span class="nv">letsencrypt</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt"> role</span><span class="p">:</span> <span class="nv">nginx</span><span class="p p-Indicator">,</span><span class="nt"> tags</span><span class="p">:</span> <span class="nv">nginx</span> <span class="p p-Indicator">}</span>
 </code></pre></div>
 
 
 <p>In your nginx role:</p>
 <p>nginx.conf.j2:</p>
-<div class="codehilite"><pre><span></span><code><span class="x">    :::jinja</span>
-<span class="x">    http {</span>
-<span class="x">            ...</span>
-<span class="x">                    ssl_certificate /etc/letsencrypt/live/</span><span class="cp">{{</span> <span class="nv">letsencrypt_cert_domains</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="cp">}}</span><span class="x">/fullchain.pem;</span>
-<span class="x">            ssl_certificate_key /etc/letsencrypt/live/</span><span class="cp">{{</span> <span class="nv">letsencrypt_cert_domains</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="cp">}}</span><span class="x">/privkey.pem;</span>
-<span class="x">            ...</span>
-<span class="x">    }</span>
+<div class="highlight"><pre><span></span><code><span class="x">http {</span>
+<span class="x">        ...</span>
+<span class="x">        ssl_certificate /etc/letsencrypt/live/</span><span class="cp">{{</span> <span class="nv">letsencrypt_cert_domains</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="cp">}}</span><span class="x">/fullchain.pem;</span>
+<span class="x">        ssl_certificate_key /etc/letsencrypt/live/</span><span class="cp">{{</span> <span class="nv">letsencrypt_cert_domains</span><span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="cp">}}</span><span class="x">/privkey.pem;</span>
+<span class="x">        ...</span>
+<span class="x">}</span>
 </code></pre></div>
 
 
 <p>site.conf.j2:</p>
-<div class="codehilite"><pre><span></span><code>    <span class="p">:::</span><span class="n">jinja</span>
-    <span class="n">server</span> <span class="err">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">server</span> <span class="p">{</span>
 
-            <span class="k">listen</span> <span class="mi">80</span><span class="p">;</span>
-            <span class="k">listen</span> <span class="mi">443</span><span class="p">;</span>
+        <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+        <span class="kn">listen</span> <span class="mi">443</span><span class="p">;</span>
 
-            <span class="k">server_name</span> <span class="n">site</span><span class="p">.</span><span class="n">com</span><span class="p">;</span>
+        <span class="kn">server_name</span> <span class="s">site.com</span><span class="p">;</span>
 
-            <span class="k">location</span> <span class="o">/</span><span class="p">.</span><span class="n">well</span><span class="o">-</span><span class="n">known</span><span class="o">/</span><span class="n">acme</span><span class="o">-</span><span class="n">challenge</span> <span class="err">{</span>
-                    <span class="n">add_header</span>  <span class="n">X</span><span class="o">-</span><span class="n">Robots</span><span class="o">-</span><span class="n">Tag</span> <span class="ss">&quot;noindex, nofollow, nosnippet, noarchive&quot;</span><span class="p">;</span>
-                    <span class="n">root</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="p">;</span>
-            <span class="err">}</span>   
-    <span class="err">}</span>
+        <span class="kn">location</span> <span class="s">/.well-known/acme-challenge</span> <span class="p">{</span>
+                <span class="kn">add_header</span>  <span class="s">X-Robots-Tag</span> <span class="s">&quot;noindex,</span> <span class="s">nofollow,</span> <span class="s">nosnippet,</span> <span class="s">noarchive&quot;</span><span class="p">;</span>
+                <span class="kn">root</span> <span class="s">/var/www/letsencrypt/</span><span class="p">;</span>
+        <span class="p">}</span>   
+<span class="p">}</span>
 </code></pre></div>
   </div>
   <div class="tag-cloud">

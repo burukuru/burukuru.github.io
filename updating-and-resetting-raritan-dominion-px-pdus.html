@@ -124,7 +124,7 @@ to factory default' and 'raritan px restore to factory default', I have
 managed to dig out a way to complete my task.</p>
 <p>Nothing like homemade commando plugs with kettle leads, courtesy of my
 colleague JT.</p>
-<p><img alt="Commando leads" src="https://thanhpham.cloud/upload/images/raritan/IMG_20120529_144041.jpg" /></p>
+<p><img alt="Commando leads" src="https://thanhpham.cloud/upload/images/raritan/IMG_20120529_144041.jpg"></p>
 <p>First I needed to upgrade the firmware to the latest version as the
 command didn't seem to run on v1.3 for me. Grabbed my binaries from the
 <a href="http://www.raritan.com/support/dominion-px/" title="Raritan PX20 firmware">Raritan
@@ -135,14 +135,14 @@ the web interface:</p>
 <li>Hook up to the console of the PDU with a DB9 to USB converter (top)
     and a special Raritan DB9 to Ethernet console cable (bottom), like
     this:</li>
-<li><img alt="Console cables" src="https://thanhpham.cloud/upload/images/raritan/IMG_20120528_152609.jpg" title="Console cables" /></li>
+<li><img alt="Console cables" src="https://thanhpham.cloud/upload/images/raritan/IMG_20120528_152609.jpg" title="Console cables"></li>
 <li>One of these, a Cisco compatible cable, won't work:</li>
-<li><img alt="Wrong console cables" src="https://thanhpham.cloud/upload/images/raritan/IMG_20120529_144401.jpg" title="Wrong console cables" /></li>
+<li><img alt="Wrong console cables" src="https://thanhpham.cloud/upload/images/raritan/IMG_20120529_144401.jpg" title="Wrong console cables"></li>
 <li>As I use Arch Linux I just ran the following as root:</li>
 </ul>
 <!-- -->
 
-<div class="codehilite"><pre><span></span><code><span class="err">screen /dev/ttyUSB0</span>
+<div class="highlight"><pre><span></span><code><span class="err">screen /dev/ttyUSB0</span>
 </code></pre></div>
 
 
@@ -152,7 +152,7 @@ the web interface:</p>
 </ul>
 <!-- -->
 
-<div class="codehilite"><pre><span></span><code><span class="o">[</span><span class="n">Old IP address</span><span class="o">]</span><span class="w"> </span><span class="nl">command</span><span class="p">:</span><span class="w"> </span><span class="n">config</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">Old IP address</span><span class="o">]</span><span class="w"> </span><span class="nl">command</span><span class="p">:</span><span class="w"> </span><span class="n">config</span><span class="w"></span>
 <span class="n">IP</span><span class="w"> </span><span class="n">autoconfiguration</span><span class="w"> </span><span class="p">(</span><span class="k">none</span><span class="o">/</span><span class="n">dhcp</span><span class="o">/</span><span class="n">bootp</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">none</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">dhcp</span><span class="w"></span>
 </code></pre></div>
 
@@ -162,7 +162,7 @@ you might have to unplug the network cable and plug it back in. Proceed
 with the firmware upgrade in the web browser!</p>
 <p>Once the upgrade is completed, go into 'clp' mode in the console and
 type:</p>
-<div class="codehilite"><pre><span></span><code><span class="c">clp:/-&gt; set /system1 FactoryDefaults=true</span>
+<div class="highlight"><pre><span></span><code><span class="c">clp:/-&gt; set /system1 FactoryDefaults=true</span>
 </code></pre></div>
 
 

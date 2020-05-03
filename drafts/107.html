@@ -116,7 +116,7 @@
 
   <div>
     <p>Having recently acquired a new PC, after 4 arduous heavy-overclocked
-years with my previous one, I had to install Gentoo again.<br />
+years with my previous one, I had to install Gentoo again.<br>
 I've been a Gentoo user for a few years now but I've only installed it
 a couple of times. Here are a handful of hiccups I ran into and I
 thought I'd jot them down for next time.</p>
@@ -127,19 +127,19 @@ kit (an SSD among them), I decided in true Gentoo spirit to make things
 faster by skipping the bootloader.</p>
 <h4>UEFI Support</h4>
 <p>The first issue I ran into is that Gentoo doesn't officially support
-installing a UEFI-bootable system; you need to jump over a few hoops.<br />
+installing a UEFI-bootable system; you need to jump over a few hoops.<br>
 The Gentoo wiki comes to the rescue as usual with a nice and concise
 article on this:</p>
 <p>http://wiki.gentoo.org/wiki/UEFI_Gentoo_Quick_Install_Guide</p>
 <h4>Stub kernel and initramfs</h4>
 <p>One thing to note when using the stub kernel is that everything needs to
 be compiled into the kernel as we are not loading the initramfs
-anymore.<br />
+anymore.<br>
 This means that any device drivers will need to be compiled in. Because
 of some dependencies, the AHCI SATA driver wasn't loaded into mine and I
 kept getting a stack trace on kernel boot and the following error
 message:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">---[ end Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)</span>
+<div class="highlight"><pre><span></span><code><span class="err">---[ end Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)</span>
 </code></pre></div>
 
 

@@ -114,17 +114,17 @@
       <p>Say you're running an nginx proxy and need to set up multiple domains with different backends.</p>
 <p>Using: https://github.com/thefinn93/ansible-letsencrypt/</p>
 <p>proxy.yml:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">    :::yaml</span>
-<span class="err">    - hosts: proxy</span>
-<span class="err">      vars:</span>
-<span class="err">        letsencrypt_webroot_path: /var/www/letsencrypt/</span>
-<span class="err">        letsencrypt_email: foo@bar.com</span>
-<span class="err">        letsencrypt_cert_domains:</span>
-<span class="err">          - site.com</span>
-<span class="err">          - www.site.com</span>
-<span class="err">          - othersite.org</span>
-<span class="err">        letsencrypt_renewal_command_args: &#39;--renew-hook &quot;systemctl restart nginx&quot;&#39;</span>
-<span class="err">      roles …</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">hosts</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">proxy</span>
+  <span class="nt">vars</span><span class="p">:</span>
+    <span class="nt">letsencrypt_webroot_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/letsencrypt/</span>
+    <span class="nt">letsencrypt_email</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">foo@bar.com</span>
+    <span class="nt">letsencrypt_cert_domains</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">site.com</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">www.site.com</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">othersite.org</span>
+    <span class="nt">letsencrypt_renewal_command_args</span><span class="p">:</span> <span class="s">&#39;--renew-hook</span><span class="nv"> </span><span class="s">&quot;systemctl</span><span class="nv"> </span><span class="s">restart</span><span class="nv"> </span><span class="s">nginx&quot;&#39;</span>
+  <span class="nt">roles</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt"> role …</span></code></pre></div>
         <br>
         <a class="btn" href="https://thanhpham.cloud/nginx-proxy-ansible-letsencrypt.html#nginx-proxy-ansible-letsencrypt">    Continue reading
 </a>
@@ -147,7 +147,7 @@
       <p>I read this somewhere and want to keep it around.</p>
 <p>Sometimes I need to debug HTTPS/header issues in a load balanced environment.</p>
 <p>Here's how to dump all the headers in PHP:</p>
-<div class="codehilite"><pre><span></span><code><span class="cm">/* {DocumentRoot}/headers.php</span>
+<div class="highlight"><pre><span></span><code><span class="cm">/* {DocumentRoot}/headers.php</span>
 <span class="cm">Show all values defined on $_SERVER */</span>
 <span class="cp">&lt;?php</span>
      <span class="k">while</span> <span class="p">(</span><span class="k">list</span><span class="p">(</span><span class="nv">$var</span><span class="p">,</span><span class="nv">$value</span><span class="p">)</span> <span class="o">=</span> <span class="nb">each</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">))</span> <span class="p">{</span>
@@ -173,7 +173,7 @@
   <div>
       <p>I ran into some regression bugs with the latest version of Ansible and wanted to test to confirm a few things before posting bug reports.
 As I run MacOS at work, Ansible is installed from Brew. If you're lucky, you might still have your old versions around:</p>
-<div class="codehilite"><pre><span></span><code>$ ls /usr/local …</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ ls /usr/local …</code></pre></div>
         <br>
         <a class="btn" href="https://thanhpham.cloud/multiple-ansible-versions-on-mac.html#multiple-ansible-versions-on-mac">    Continue reading
 </a>
@@ -195,7 +195,7 @@ As I run MacOS at work, Ansible is installed from Brew. If you're lucky, you mig
   <div>
       <p>I can never remember how to do this without the GUI so here is the quick
 command to detect the Solr version you're currently running:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">wget -q -O- localhost:8080/solr/admin/registry.jsp | grep -E &quot;spec-version|impl-version&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="err">wget -q -O- localhost:8080/solr/admin/registry.jsp | grep -E &quot;spec-version|impl-version&quot;</span>
 </code></pre></div>
 
 

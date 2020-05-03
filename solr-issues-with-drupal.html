@@ -130,7 +130,7 @@ changes had to be made; the issue started appearing for all users, even
 those that aren't logged in so I decided to take a look.</p>
 <h1>Symptoms and debugging</h1>
 <p>The issue only manifested itself with a simple error message:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">The Apache Solr search engine is not available. Please contact your site administrator.</span>
+<div class="highlight"><pre><span></span><code><span class="err">The Apache Solr search engine is not available. Please contact your site administrator.</span>
 </code></pre></div>
 
 
@@ -148,7 +148,7 @@ or print out the query to the browser.</p>
 <p>I came across this very helpful link on how to <a href="https://www.drupal.org/node/2240049">debug Solr queries in
 Drupal</a>. In my case, possibly a
 different version of Drupal, the file was different:</p>
-<div class="codehilite"><pre><span></span><code><span class="err"># grep -irH drupal_http_request . | grep solr</span>
+<div class="highlight"><pre><span></span><code><span class="err"># grep -irH drupal_http_request . | grep solr</span>
 <span class="err">sites/all/modules/contrib/apachesolr/Drupal_Apache_Solr_Service.php: $result = drupal_http_request($url, $headers, $method, $content);</span>
 </code></pre></div>
 
@@ -160,19 +160,19 @@ printed in my browser. And it was a huge query...</p>
 maintained by the same developers anymore; in those cases it's much
 faster to do the debugging ourselves without digging into the code. If
 you're running <strong>SmartOS</strong> and have access to <strong>truss</strong>, this is how to
-go about it (strace can probably do something similar in Linux).<br />
+go about it (strace can probably do something similar in Linux).<br>
 This is actually how I went about it before I realised Drupal probably
 has an easier way for me to debug the issue.</p>
-<div class="codehilite"><pre><span></span><code><span class="err"># truss -o /tmp/truss -wall -rall -vall -p $(pgrep httpd)</span>
+<div class="highlight"><pre><span></span><code><span class="err"># truss -o /tmp/truss -wall -rall -vall -p $(pgrep httpd)</span>
 </code></pre></div>
 
 
 <p>It will help to have a clone of your server or a dev environment so that
-the truss output is less messy to read.<br />
+the truss output is less messy to read.<br>
 Run this and do a search on your website. Wait until it finishes and
 Ctrl+C truss.</p>
 <p>Search for the query:</p>
-<div class="codehilite"><pre><span></span><code><span class="err"># grep -n &quot;G E T / s o l r / s e l e c t &quot; /tmp/truss</span>
+<div class="highlight"><pre><span></span><code><span class="err"># grep -n &quot;G E T / s o l r / s e l e c t &quot; /tmp/truss</span>
 <span class="c">248606:24614: G E T / s o l r / s e l e c t ? f l = i d % 2 C n i d % 2 C t</span>
 <span class="c">870437:24611: G E T / s o l r / s e l e c t ? f l = i d % 2 C n i d % 2 C t</span>
 </code></pre></div>
@@ -180,7 +180,7 @@ Ctrl+C truss.</p>
 
 <p>You can also search for 8080 or whichever port Tomcat is running on and
 the GET line should be not far below:</p>
-<div class="codehilite"><pre><span></span><code><span class="err"># grep -n AF_INET /tmp/truss.1 | grep 8080</span>
+<div class="highlight"><pre><span></span><code><span class="err"># grep -n AF_INET /tmp/truss.1 | grep 8080</span>
 <span class="c">248599:24614: AF_INET name = 127.0.0.1 port = 8080</span>
 <span class="c">870430:24611: AF_INET name = 127.0.0.1 port = 8080</span>
 </code></pre></div>
@@ -188,11 +188,11 @@ the GET line should be not far below:</p>
 
 <p>Go to line 248606 in your truss output and your query should be there,
 probably spanning a few send() blocks, it should end with a
-"\r\n\r\n" string.<br />
+"\r\n\r\n" string.<br>
 After that you should see a recv() block with a response from
 Tomcat/Solr. For me, it just showed a "400 Bad Request" error. When I
 ran the extracted query with wget, I saw this:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">Resolving localhost (localhost)... 127.0.0.1</span>
+<div class="highlight"><pre><span></span><code><span class="err">Resolving localhost (localhost)... 127.0.0.1</span>
 <span class="err">Connecting to localhost (localhost)|127.0.0.1|:8080... connected.</span>
 <span class="err">HTTP request sent, awaiting response... 400 Bad Request</span>
 <span class="err">2015-02-24 15:26:15 ERROR 400: Bad Request.</span>
@@ -202,7 +202,7 @@ ran the extracted query with wget, I saw this:</p>
 <p>Once you have the truss output cut down to just the query, you can
 remove all the whitespaces, PIDs and system calls; all that will remain
 is the actual query that Drupal is running. Mine was quite big:</p>
-<div class="codehilite"><pre><span></span><code><span class="err"># wc /tmp/truss </span>
+<div class="highlight"><pre><span></span><code><span class="err"># wc /tmp/truss </span>
 <span class="err">1 9 39733 /tmp/truss</span>
 </code></pre></div>
 

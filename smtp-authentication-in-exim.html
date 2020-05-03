@@ -129,21 +129,21 @@
 that allows you to create aliases in your account and send emails as
 those aliases from their SMTP servers:</p>
 <p><a href="http://googlesystem.blogspot.co.uk/2014/08/external-addresses-no-longer-use-gmail.html">http://googlesystem.blogspot.co.uk/2014/08/external-addresses-no-longer-use-gmail.html</a></p>
-<p>For any new aliases, you will need to provide your own SMTP servers.<br />
+<p>For any new aliases, you will need to provide your own SMTP servers.<br>
 If you have a VPS of some sort, this is how you can set up simple SMTP
 authentication in Exim to pipe your emails through your server and keep
 using the Google web interface.</p>
 <h4>SMTP Authentication</h4>
 <p>LOGIN and PLAIN auth differs in the fact that LOGIN will prompt for the
 username/password explicitely whereas in PLAIN the client is expected to
-send both in one blob.<br />
+send both in one blob.<br>
 Practically the only difference is an additional null byte at the
 beginning of the LOGIN blob send to the server.</p>
 <h5>LOGIN</h5>
 <p>How to set up simple SMTP LOGIN auth with SHA1 (alternative is crypt or
 MD5..):</p>
 <p>exim.conf file (based on a  Ubuntu template):</p>
-<div class="codehilite"><pre><span></span><code>...
+<div class="highlight"><pre><span></span><code>...
 CONFDIR = /etc/exim4/
 ...
 begin authenticators
@@ -159,17 +159,17 @@ server_set_id = <span class="nv">$auth1</span>
 
 
 <p>passwd file:</p>
-<div class="codehilite"><pre><span></span><code><span class="nl">username</span><span class="p">:[</span><span class="n">PASSWORD</span> <span class="n">HASH</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="nl">username</span><span class="p">:[</span><span class="n">PASSWORD</span> <span class="n">HASH</span><span class="p">]</span>
 </code></pre></div>
 
 
 <p>How to generate password hash:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">perl</span><span class="w"> </span><span class="o">-</span><span class="nl">MDigest</span><span class="p">:</span><span class="err">:</span><span class="n">SHA</span><span class="o">=</span><span class="n">sha1_hex</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="s1">&#39;print sha1_hex($ARGV[0]),&quot;\n&quot;&#39;</span><span class="w"> </span><span class="o">[</span><span class="n">PASSWORD</span><span class="o">]</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">perl</span><span class="w"> </span><span class="o">-</span><span class="nl">MDigest</span><span class="p">:</span><span class="err">:</span><span class="n">SHA</span><span class="o">=</span><span class="n">sha1_hex</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="s1">&#39;print sha1_hex($ARGV[0]),&quot;\n&quot;&#39;</span><span class="w"> </span><span class="o">[</span><span class="n">PASSWORD</span><span class="o">]</span><span class="w"></span>
 </code></pre></div>
 
 
 <p>To test this, you need to encode the username/pass in base64:</p>
-<div class="codehilite"><pre><span></span><code><span class="err"># cat encode.pl</span>
+<div class="highlight"><pre><span></span><code><span class="err"># cat encode.pl</span>
 <span class="err">use MIME::Base64;</span>
 <span class="err">printf (&quot;%s&quot;, encode_base64(eval &quot;\&quot;$ARGV[0]\&quot;&quot;));</span>
 <span class="err"># perl encode.pl &#39;username\0password&#39;</span>
@@ -185,7 +185,7 @@ server_set_id = <span class="nv">$auth1</span>
 <p>If you'd rather have a PLAIN auth, just change the snippet in exim.conf
 to:</p>
 <p>exim.conf file</p>
-<div class="codehilite"><pre><span></span><code>...
+<div class="highlight"><pre><span></span><code>...
 CONFDIR = /etc/exim4/
 ...
 begin authenticators
@@ -200,7 +200,7 @@ server_set_id = <span class="nv">$auth2</span>
 
 
 <p>to test, run:</p>
-<div class="codehilite"><pre><span></span><code><span class="err"># perl encode.pl &#39;\0username\0password&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="err"># perl encode.pl &#39;\0username\0password&#39;</span>
 <span class="err">AHVzZXJuYW1lAHBhc3N3b3Jk</span>
 <span class="err"># exim -bh localhost</span>
 <span class="err">&gt; ehlo test</span>
@@ -210,7 +210,7 @@ server_set_id = <span class="nv">$auth2</span>
 
 <h5>SSL</h5>
 <p>Test with SSL by using this instead of 'exim -bh':</p>
-<div class="codehilite"><pre><span></span><code><span class="err">openssl s_client -connect server.com:465</span>
+<div class="highlight"><pre><span></span><code><span class="err">openssl s_client -connect server.com:465</span>
 </code></pre></div>
 
 
