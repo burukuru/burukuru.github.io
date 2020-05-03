@@ -44,11 +44,12 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
 
+# Flex configuration
 THEME = 'Flex'
 SITETITLE = 'Cloud Magic'
-SITELOGO = 'https://thanhpham.cloud/upload/profile.jpg'
+SITELOGO = '/upload/profile.jpg'
 MAIN_MENU = True
 MENUITEMS = (
-        ('Categories', 'https://thanhpham.cloud/categories.html'),
-        ('Tags', 'https://thanhpham.cloud/tags.html'),
+        ('Categories', '/categories.html'),
+        ('Tags', '/tags.html'),
         )
