@@ -114,17 +114,17 @@
       <p>Say you're running an nginx proxy and need to set up multiple domains with different backends.</p>
 <p>Using: https://github.com/thefinn93/ansible-letsencrypt/</p>
 <p>proxy.yml:</p>
-<p>:::yaml
-- hosts: proxy
-  vars:
-    letsencrypt_webroot_path: /var/www/letsencrypt/
-    letsencrypt_email: foo@bar.com
-    letsencrypt_cert_domains:
-      - site.com
-      - www.site.com
-      - othersite.org
-    letsencrypt_renewal_command_args: '--renew-hook "systemctl restart nginx"'
-  roles …</p>
+<div class="highlight"><pre><span></span><code><span class="err">    :::yaml</span>
+<span class="err">    - hosts: proxy</span>
+<span class="err">      vars:</span>
+<span class="err">        letsencrypt_webroot_path: /var/www/letsencrypt/</span>
+<span class="err">        letsencrypt_email: foo@bar.com</span>
+<span class="err">        letsencrypt_cert_domains:</span>
+<span class="err">          - site.com</span>
+<span class="err">          - www.site.com</span>
+<span class="err">          - othersite.org</span>
+<span class="err">        letsencrypt_renewal_command_args: &#39;--renew-hook &quot;systemctl restart nginx&quot;&#39;</span>
+<span class="err">      roles …</span></code></pre></div>
         <br>
         <a class="btn" href="https://thanhpham.cloud/nginx-proxy-ansible-letsencrypt.html#nginx-proxy-ansible-letsencrypt">    Continue reading
 </a>
