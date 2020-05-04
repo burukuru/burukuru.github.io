@@ -21,7 +21,17 @@
 
 
 
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-165492269-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
 
 <meta name="author" content="Thanh" />
 <meta name="description" content="strace output from process using 100% cpu root@tomcat1-prd-moogi:/var/log/tomcat8# strace -c -p 12194 strace: Process 12194 attached ^Cstrace: Process 12194 detached % time seconds usecs/call calls errors syscall ------ ----------- ----------- --------- --------- ---------------- 100.00 16.934431 8596 1970 165 futex 0.00 0.000010 0 785 sched_yield 0.00 …" />
