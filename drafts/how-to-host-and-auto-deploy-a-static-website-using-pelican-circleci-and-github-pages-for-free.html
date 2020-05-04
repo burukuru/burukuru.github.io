@@ -24,14 +24,14 @@
 
 
 <meta name="author" content="Thanh" />
-<meta name="description" content="In this post I will go through how you can: host a simple website (tech blog) for free using GitHub Pages auto deploy the site using CircleCI Technologies Pelican My website, a fairly simple tech blog, is created using a static site generator written in Python called Pelican. Pelican supports …" />
+<meta name="description" content="In this post I will go through how you can: host a simple static website for free using GitHub Pages and Pelican auto deploy the site with CircleCI Tools Pelican My website, a fairly simple tech blog, is created using a static site generator written in Python called Pelican. Pelican …" />
 <meta name="keywords" content="devops, cicd">
 
 <meta property="og:site_name" content="Cloud Magic"/>
-<meta property="og:title" content="How to auto deploy a static website using Pelican, CircleCI and GitHub Pages for free"/>
-<meta property="og:description" content="In this post I will go through how you can: host a simple website (tech blog) for free using GitHub Pages auto deploy the site using CircleCI Technologies Pelican My website, a fairly simple tech blog, is created using a static site generator written in Python called Pelican. Pelican supports …"/>
+<meta property="og:title" content="How to host and auto deploy a static website using Pelican, CircleCI and GitHub Pages for free"/>
+<meta property="og:description" content="In this post I will go through how you can: host a simple static website for free using GitHub Pages and Pelican auto deploy the site with CircleCI Tools Pelican My website, a fairly simple tech blog, is created using a static site generator written in Python called Pelican. Pelican …"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://thanhpham.cloud/drafts/how-to-auto-deploy-a-static-website-using-pelican-circleci-and-github-pages-for-free.html"/>
+<meta property="og:url" content="https://thanhpham.cloud/drafts/how-to-host-and-auto-deploy-a-static-website-using-pelican-circleci-and-github-pages-for-free.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2020-05-03 12:25:00+01:00"/>
 <meta property="article:modified_time" content=""/>
@@ -41,7 +41,7 @@
 <meta property="article:tag" content="cicd"/>
 <meta property="og:image" content="/upload/profile.jpg">
 
-  <title>Cloud Magic &ndash; How to auto deploy a static website using Pelican, CircleCI and GitHub Pages for free</title>
+  <title>Cloud Magic &ndash; How to host and auto deploy a static website using Pelican, CircleCI and GitHub Pages for free</title>
 
 </head>
 <body>
@@ -106,7 +106,7 @@
 <article class="single">
   <header>
       
-    <h1 id="how-to-auto-deploy-a-static-website-using-pelican-circleci-and-github-pages-for-free">How to auto deploy a static website using Pelican, CircleCI and GitHub Pages for free</h1>
+    <h1 id="how-to-host-and-auto-deploy-a-static-website-using-pelican-circleci-and-github-pages-for-free">How to host and auto deploy a static website using Pelican, CircleCI and GitHub Pages for free</h1>
     <p>
           Posted on Sun 03 May 2020 in <a href="https://thanhpham.cloud/category/devops.html">DevOps</a>
 
@@ -118,12 +118,12 @@
   <div>
     <p>In this post I will go through how you can:</p>
 <ul>
-<li>host a simple website (tech blog) for free using GitHub Pages</li>
-<li>auto deploy the site using CircleCI</li>
+<li>host a simple static website for free using GitHub Pages and Pelican</li>
+<li>auto deploy the site with CircleCI</li>
 </ul>
-<h1>Technologies</h1>
+<h1>Tools</h1>
 <h2>Pelican</h2>
-<p>My website, a fairly simple tech blog, is created using a static site generator written in Python called <a href="https://github.com/getpelican/pelican/">Pelican</a>. Pelican supports Markdown, which is one of my favourite ways of writing documentation.</p>
+<p>My website, a fairly simple tech blog, is created using a static site generator written in Python called <a href="https://github.com/getpelican/pelican/">Pelican</a>. Pelican supports Markdown, which is one of my favourite ways of writing documentation and hence a natural choice to write tech blog posts in. I have written a few blogs on platforms with WISYWIG editors and they have sometimes felt a bit clunky when formatting code.</p>
 <p><strong>Why Pelican?</strong></p>
 <p>I like the simplicity of having a static site, it's:</p>
 <ul>
@@ -142,7 +142,7 @@
 <h1>Deployment</h1>
 <p>CircleCI has an excellent blog post on <a href="https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/">how to deploy documentation to GitHub Pages with CI</a>. I am going to expand on it with the specific use case of deploying a personal website using Pelican.</p>
 <h2>Repository and branches</h2>
-<p>First you will need to <a href="https://pages.github.com/">create a repository</a> for your GitHub Pages. As the website is deployed from the master branch of our repository, we will store all Pelican configuration files and source Markdown files in a branch called <code>pelican</code>.</p>
+<p>First you will need to <a href="https://pages.github.com/">create a repository</a> for your GitHub Pages. As the website is deployed from the master branch of our repository, we will store all Pelican configuration files and source Markdown files in a branch called <code>pelican</code>. The two branches are completely separate and do not share a common Git history.</p>
 <h2>SSH keys</h2>
 <p>Using SSH keys, instead of personal access tokens, will let you follow the principle of least privileges and only allow the CI jobs to push to this specific repository. We want to protect any higher value repositories you might have under your administration.</p>
 <p><a href="https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Generate ssh key</a>; the command from GitHub docs are usually a great guidance but in this case I had to tweak them as the OpenSSH default format has changed and CircleCI did not seem to support it.</p>
@@ -152,8 +152,8 @@
 
 <p>Upload the <a href="https://circleci.com/docs/2.0/add-ssh-key/">private SSH key to CircleCI</a>.<br>
 Then add the public key as a <a href="https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys">deploy key with read/write</a> to your GitHub project.</p>
-<h2>CircleCI config</h2>
-<p>First we need to generate site which is as easy as:</p>
+<h2>CI</h2>
+<p>In the CircleCI configuration, we need to generate site which is as easy as:</p>
 <div class="highlight"><pre><span></span><code>pipenv run pelican 
 </code></pre></div>
 
