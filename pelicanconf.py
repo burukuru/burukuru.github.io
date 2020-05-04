@@ -5,19 +5,20 @@ from __future__ import unicode_literals
 AUTHOR = u'Thanh'
 SITENAME = u'Cloud Magic'
 SITEURL = 'https://thanhpham.cloud'
+TIMEZONE = 'Europe/London'
+DEFAULT_PAGINATION = 10
+
+DEFAULT_LANG = u'en'
+DEFAULT_METADATA = {
+        'status': 'draft',
+        }
+
 PATH = 'content'
 STATIC_PATHS = ['upload']
 ARTICLES_PATHS = ['upload']
 
 EXTRA_PATH_METADATA = {
         'upload/CNAME': {'path': 'CNAME'},
-        }
-
-TIMEZONE = 'Europe/London'
-
-DEFAULT_LANG = u'en'
-DEFAULT_METADATA = {
-        'status': 'draft',
         }
 
 # Feed generation is usually not desired when developing
@@ -39,10 +40,7 @@ SOCIAL = (
         ('flickr', 'https://flickr.com/burukuru'),
         )
 
-DEFAULT_PAGINATION = 10
-
-# Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
+GOOGLE_ANALYTICS = "UA-165492269-1"
 
 # Flex configuration
 THEME = 'Flex'
